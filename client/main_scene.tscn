@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://btl3fgu3xey73"]
+
+[ext_resource type="PackedScene" uid="uid://cgh0bx0ywd8gd" path="res://client/player.tscn" id="1_7mjx8"]
+[ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_735pc"]
+
+[node name="main_scene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7mjx8")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1920)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_735pc")
