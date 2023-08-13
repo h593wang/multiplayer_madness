@@ -31,8 +31,8 @@ func create_player(id):
 	# Add it to the "Players" node.
 	# We give the new Node a name for easy retrieval, but that's not necessary.
 	p.name = str(id)
-	get_node("root/MainScene/Network").add_child(p)
+	get_tree().root.get_node("MainScene/Network").add_child(p)
 	
 func destroy_player(id):
 	# Delete this peer's node.
-	get_node("root/MainScene/Network").get_node(str(id)).queue_free()
+	get_tree().root.get_node("MainScene/Network").get_node(str(id)).queue_free()
