@@ -31,7 +31,7 @@ func create_player(id):
 	# Add it to the "Players" node.
 	# We give the new Node a name for easy retrieval, but that's not necessary.
 	p.name = str(id)
-	get_node("/root/MainScene/Network").add_child(p)
+	get_node("/root/MainScene/Network").call_deferred("add_child", p)
 	
 func destroy_player(id):
 	# Delete this peer's node.
