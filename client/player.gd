@@ -20,6 +20,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$RichTextLabel.text = str(position)
 	var direction = get_mouse_position_rotation()
 	
 	if not is_left_hand and (direction > 2 * PI/3 or direction < -2 * PI/3):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cgh0bx0ywd8gd"]
+[gd_scene load_steps=59 format=3 uid="uid://cgh0bx0ywd8gd"]
 
 [ext_resource type="Script" path="res://client/player.gd" id="1_y5rhm"]
 [ext_resource type="Shader" path="res://player.gdshader" id="2_1e1ot"]
@@ -412,9 +412,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkms4"]
 size = Vector2(27, 10)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4kcoc"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
 [node name="Player" type="CharacterBody2D"]
 process_priority = -10
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_y5rhm")
 gun_scene = ExtResource("2_5myhi")
 
@@ -442,3 +449,12 @@ position = Vector2(-0.5, 26)
 shape = SubResource("RectangleShape2D_dkms4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_4kcoc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -20.0
+offset_top = -61.0
+offset_right = 20.0
+offset_bottom = -21.0

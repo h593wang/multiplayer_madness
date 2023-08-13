@@ -27,7 +27,7 @@ func create_player(id):
 	# Instantiate a new player for this client.
 	var p = Player.instantiate() as Player
 	# Set a random position (sent on every replicator update).
-	p.position = Vector2(randi() % 500, randi() % 500)
+	p.global_position = Vector2(randi() % 500, randi() % 500)
 	# Add it to the "Players" node.
 	# We give the new Node a name for easy retrieval, but that's not necessary.
 	p.name = str(id)
