@@ -25,9 +25,7 @@ func _process(delta):
 
 func create_player(id):
 	# Instantiate a new player for this client.
-	var p = Player.instantiate()
-	# Sets the player name (only sent during spawn).
-	p.player_name = "Player %d" % id
+	var p = Player.instantiate() as Player
 	# Set a random position (sent on every replicator update).
 	p.position = Vector2(randi() % 500, randi() % 500)
 	# Add it to the "Players" node.

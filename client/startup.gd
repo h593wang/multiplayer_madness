@@ -11,5 +11,5 @@ func _ready():
 		get_tree().change_scene_to_file('res://server/server.tscn')
 	else:
 		client_peer = ENetMultiplayerPeer.new()
-		client_peer.create_client("1.proxy.hathora.dev", 16757)
+		client_peer.create_client("1.proxy.hathora.dev", 42970)
 		multiplayer.multiplayer_peer = client_peer
