@@ -19,3 +19,5 @@ _spawnable_scenes = PackedStringArray("res://client/player.tscn")
 spawn_path = NodePath("../Network")
 
 [node name="Network" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

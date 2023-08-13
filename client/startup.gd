@@ -12,5 +12,5 @@ func _ready():
 		get_tree().root.call_deferred("add_child", server.instantiate())
 	else:
 		client_peer = ENetMultiplayerPeer.new()
-		client_peer.create_client("1.proxy.hathora.dev", 61351)
+		client_peer.create_client("1.proxy.hathora.dev", 37891)
 		multiplayer.multiplayer_peer = client_peer
