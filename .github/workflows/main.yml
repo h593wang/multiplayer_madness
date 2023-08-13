@@ -12,23 +12,20 @@ jobs:
     # Job name, can be anything
     name: Export Game
     steps:
-    - name: checkout
+    - name: Checkout
       uses: actions/checkout@v3.3.0
-    - name: godot export
-      id: export
-      uses: firebelley/godot-export@v5.2.0
+    - name: "Install Godot"
+      uses: chickensoft-games/setup-godot@v1
       with:
-        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_linux.x86_64.zip
-        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
-        relative_project_path: ./
-        export_as_pack: true
-        cache: true
-    - name: install node
+        version: 4.1.1
+    - name: "Export Godot project"
+      run: godot --headless --export-pack "Hathora Server" ./server.pck
+    - name: Install Node
       uses: actions/setup-node@v2
       with:
         node-version: 16.x
-    - name: install hathora CLI
+    - name: Install Hathora CLI
       run: "npm install -g @hathora/cli"
-    - name: hathora deploy
+    - name: Hathora Deploy
       id: deploy
       run: "./hathora-deploy.sh ${{ secrets.HATHORA_TOKEN }}"
