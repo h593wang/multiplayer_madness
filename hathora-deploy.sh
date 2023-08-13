@@ -9,4 +9,5 @@ hathora-cloud deploy \
     --planName tiny \
     --transportType udp \
     --containerPort 22222 \
-    --env "EULA=TRUE"
+    --env "EULA=TRUE" \
+    --token $1
