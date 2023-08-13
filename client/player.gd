@@ -10,6 +10,9 @@ var gun_position = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	if $MultiplayerSynchronizer.is_multiplayer_authority():
+		$Camera2D.make_current()
 	motion_mode = MOTION_MODE_FLOATING
 	$AnimatedSprite2D.play("idle_down")
 	$AnimatedSprite2D.z_index = z_index
