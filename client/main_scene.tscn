@@ -4,12 +4,10 @@
 [ext_resource type="Script" path="res://client/startup.gd" id="1_fehg4"]
 [ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_735pc"]
 
-[node name="main_scene" type="Node2D"]
+[node name="MainScene" type="Node2D"]
 script = ExtResource("1_fehg4")
 
 [node name="Player" parent="." instance=ExtResource("1_7mjx8")]
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -18,3 +16,11 @@ motion_mirroring = Vector2(1920, 1920)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("2_735pc")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://client/player.tscn")
+spawn_path = NodePath("../Network")
+
+[node name="Network" type="Node" parent="."]

@@ -439,3 +439,5 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 26)
 shape = SubResource("RectangleShape2D_dkms4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
