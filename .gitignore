@@ -6,3 +6,7 @@
 server.pck
 server.tar.gz
 server.tgz
+
+# Data shenanigans
+/.venv/
+/everything/data/
