@@ -9,8 +9,8 @@ func was_started_with_server():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if was_started_with_server():
-		get_tree().root.add_child(server.instantiate())
+		get_tree().root.call_deferred("add_child", server.instantiate())
 	else:
 		client_peer = ENetMultiplayerPeer.new()
-		client_peer.create_client("1.proxy.hathora.dev", 37891)
+		client_peer.create_client("1.proxy.hathora.dev", 61351)
 		multiplayer.multiplayer_peer = client_peer
