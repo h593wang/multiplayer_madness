@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://dptgd4wyeh1vq"]
+
+[ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
+
+[sub_resource type="GDScript" id="GDScript_fum72"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="lobby" type="Node2D"]
+script = SubResource("GDScript_fum72")
+
+[node name="lobby_ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 959.0
+offset_bottom = 528.0
+script = ExtResource("1_g56nr")
+
+[node name="room_list" type="ItemList" parent="lobby_ui"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 67.0
+offset_right = 625.0
+offset_bottom = 363.0
+max_text_lines = 5
+
+[node name="refresh_button" type="Button" parent="lobby_ui"]
+offset_left = 84.0
+offset_top = 386.0
+offset_right = 312.0
+offset_bottom = 423.0
+text = "Refresh"
+
+[node name="host_button" type="Button" parent="lobby_ui"]
+offset_left = 647.0
+offset_top = 130.0
+offset_right = 875.0
+offset_bottom = 167.0
+disabled = true
+text = "Host
+"
+
+[node name="join_button" type="Button" parent="lobby_ui"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 69.0
+offset_right = 876.0
+offset_bottom = 106.0
+disabled = true
+text = "Join"
+
+[node name="room_list_request" type="HTTPRequest" parent="lobby_ui"]
+
+[node name="host_request" type="HTTPRequest" parent="lobby_ui"]
+
+[node name="login_request" type="HTTPRequest" parent="lobby_ui"]
+
+[node name="room_poll_request" type="HTTPRequest" parent="lobby_ui"]
