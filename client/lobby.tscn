@@ -37,6 +37,7 @@ offset_bottom = 363.0
 max_text_lines = 5
 
 [node name="refresh_button" type="Button" parent="lobby_ui"]
+layout_mode = 0
 offset_left = 84.0
 offset_top = 386.0
 offset_right = 312.0
@@ -44,6 +45,7 @@ offset_bottom = 423.0
 text = "Refresh"
 
 [node name="host_button" type="Button" parent="lobby_ui"]
+layout_mode = 0
 offset_left = 647.0
 offset_top = 130.0
 offset_right = 875.0
@@ -60,6 +62,21 @@ offset_right = 876.0
 offset_bottom = 106.0
 disabled = true
 text = "Join"
+
+[node name="host_local_button" type="Button" parent="lobby_ui"]
+offset_left = 648.0
+offset_top = 263.0
+offset_right = 876.0
+offset_bottom = 300.0
+text = "Host Local
+"
+
+[node name="join_local_button" type="Button" parent="lobby_ui"]
+offset_left = 648.0
+offset_top = 321.0
+offset_right = 876.0
+offset_bottom = 358.0
+text = "Join Local"
 
 [node name="room_list_request" type="HTTPRequest" parent="lobby_ui"]
 

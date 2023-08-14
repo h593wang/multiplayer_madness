@@ -7,3 +7,6 @@ func _ready():
 	client_peer = ENetMultiplayerPeer.new()
 	client_peer.create_client(Globals.server_host, Globals.server_port)
 	multiplayer.multiplayer_peer = client_peer
+
+func _process(delta):
+	pass

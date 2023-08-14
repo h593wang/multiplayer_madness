@@ -4,6 +4,8 @@ extends Control
 @onready var host_button = $host_button
 @onready var join_button = $join_button
 @onready var refresh_button = $refresh_button
+@onready var host_local_button = $host_local_button
+@onready var join_local_button = $join_local_button
 
 @onready var room_list_request = $room_list_request
 @onready var room_poll_request = $room_poll_request
@@ -18,6 +20,9 @@ var room_poll_url = 'https://api.hathora.dev/rooms/v2/%s/connectioninfo/{roomId}
 var connect_room_id = null
 var login_token = null
 var room_poll_active = false
+
+const server_scene = preload('res://server/server.tscn')
+const client_scene = preload('res://client/main_scene.tscn')
 	
 func select_room(room_id):
 	connect_room_id = room_id
@@ -93,6 +98,15 @@ func on_join_click():
 func on_refresh_click():
 	reload_rooms()
 
+func on_host_local_click():
+	get_tree().change_scene_to_file("res://server/server.tscn")
+	
+func on_join_local_click():
+	connect_to_server({
+		"host": "127.0.0.1",
+		"port": Globals.MULTIPLAYER_PORT
+	})
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	room_list_request.request_completed.connect(on_room_request_complete)
@@ -103,6 +117,8 @@ func _ready():
 	host_button.pressed.connect(on_host_click)
 	join_button.pressed.connect(on_join_click)
 	refresh_button.pressed.connect(on_refresh_click)
+	host_local_button.pressed.connect(on_host_local_click)
+	join_local_button.pressed.connect(on_join_local_click)
 	
 	login_request.request(login_url, [], HTTPClient.METHOD_POST)
 	reload_rooms()
