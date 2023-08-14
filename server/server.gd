@@ -1,6 +1,7 @@
 extends Node2D
 
 const Player = preload("res://client/player.tscn")
+const Bullet = preload("res://weapons/bullets/basicbullet/bullet.tscn")
 const Constants = preload("res://common/globals.gd")
 
 func on_peer_connected(id):
@@ -31,7 +32,12 @@ func create_player(id):
 	# Add it to the "Players" node.
 	# We give the new Node a name for easy retrieval, but that's not necessary.
 	p.name = str(id)
-	get_node("/root/MainScene/Network").call_deferred("add_child", p)
+	var bullet = Bullet.instantiate() as Bullet
+	bullet.global_position = p.global_position
+	bullet.name=str(id)
+	bullet.z_index = 1000
+	get_node("/root/MainScene/Network").add_child(p)
+	get_node("/root/MainScene/Network").add_child(bullet)
 	
 func destroy_player(id):
 	# Delete this peer's node.

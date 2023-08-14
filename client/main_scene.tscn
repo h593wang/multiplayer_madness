@@ -15,7 +15,7 @@ motion_mirroring = Vector2(1920, 1920)
 texture = ExtResource("2_735pc")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://client/player.tscn")
+_spawnable_scenes = PackedStringArray("res://client/player.tscn", "res://weapons/bullets/basicbullet/bullet.tscn")
 spawn_path = NodePath("../Network")
 
 [node name="Network" type="Node" parent="."]

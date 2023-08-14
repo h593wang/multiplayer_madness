@@ -14,6 +14,8 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !$MultiplayerSynchronizer.is_multiplayer_authority():
+		return
 	if range != 0:
 		if global_position.distance_to(start_pos) > range:
 			if fall_scene != null:
