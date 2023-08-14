@@ -8,5 +8,6 @@ server.tar.gz
 server.tgz
 
 # Data shenanigans
+__pycache__/
 /.venv/
 /everything/data/

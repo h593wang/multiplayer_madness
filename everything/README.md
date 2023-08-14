@@ -31,37 +31,28 @@ Knockback, freeze resistance, etc. can be added later, time permitting.
 Special characteristics make enemies stronger.
 There aren't actually any interesting special characteristics in Vampire Survivor, but we can instead turn to [Survivor.io's bosses](https://youtu.be/Pcp9CZLmiqg) for inspiration.
 
-- **Ranged Attack**: launches a single straight-line projectile at the player
+#### Projectile Attack
 
-  - Attack Speed
-  - Projectile Speed
-  - Projectile Size
-  - Projectile Power
+When within `[Attack Range]` of the player, the enemy launches a straight-line projectile of size `[Projectile Size]` at a speed of `[Projectile Speed]` toward the player's current direction, dealing `[Attack Power]` damage if it hits the player. Cooldown is decreased by `[Attack Speed]`.
 
-- **AOE Attack**: calls an attack on a circular area
+#### Area Attack
 
-  - Attack Speed
-  - Range
-  - Radius
-  - Power
+When within `[Attack Range]` of the player, the enemy charges for `[Attack Delay]`, then performs an area attack of radius `[Area Size]` on the player's location when the attack began charging, dealing `[Attack Power]` damage if it hits the player. Cooldown is decreased by `[Attack Speed]`.
 
-- **Death Hazard**: upon death, an hazard is left that deals damage when the player is inside it.
+#### Charge Attack
 
-  - Hazard Size
-  - Hazard Power
-  - Hazard Duration
+When within `[Attack Range]` of the player, the enemy pauses for `[Attack Delay]`, then moves at `[Charge Speed]` for a distance proportional to `[Attack Range]` in a straight line toward the player, dealing `[Attack Power]` damage if it hits the player. Cooldown is decreased by `[Attack Speed]`.
 
-- **Charge**: when within a certain radius of the player, the enemy pauses momentarily then moves at high speed for a fixed distance in a straight line toward the player
-  - Charge Cooldown
-  - Charge Speed
-  - Range
+#### Hazard
+
+Upon death, the enemy leaves a hazardous area of radius `[Hazard Size]` at its current position lasting for `[Hazard Duration]`, dealing `[Attack Power]` damage repeatedly when the player is in the area.
 
 ### Bosses
 
 The boss version of an enemy will be a bigger and amplified version with increased size and stats.
 The special characteristics will also be amplified:
 
-- **Ranged Attack**: launches multiple straight-line projectiles in the player's direction, with increased size or something
-- **AOE Attack**: launches multiple attacks on circular areas, with increased size or something
-- **Death Hazard**: leaves a hazardous trail
-- **Charge**: enormous range
+- **Ranged Attack**: launches a spread of multiple projectiles at the same time or in quick succession.
+- **Area Attack**: launches multiple attacks at once or in quick succession.
+- **Charge Attack**: already made difficult by the boss' increased size, the attack also gains enormous range and speed.
+- **Hazard**: continuously leaves a hazardous trail wherever the boss goes.

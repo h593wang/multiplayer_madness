@@ -8,7 +8,7 @@ entity_ids: list[str] = pile["pages"]
 
 client = Client()
 for entity_id in entity_ids:
-    local_path = os.path.join("everything/data", f"{entity_id}.json")
+    local_path = os.path.join("everything/data/entity", f"{entity_id}.json")
     if os.path.exists(local_path):
         continue
     entity = client.get(entity_id, load=True)
