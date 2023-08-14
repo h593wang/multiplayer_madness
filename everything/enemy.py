@@ -43,6 +43,7 @@ class Hazard(DataClassJsonMixin):
 class Enemy(DataClassJsonMixin):
     name: str
     image_path: str
+    entity_id: Optional[str] = None
 
     # STATS
     health: Level = Level.NORMAL
@@ -60,6 +61,7 @@ if __name__ == "__main__":
     universe = Enemy(
         name="Universe",
         image_path="Hubble_ultra_deep_field.jpg",
+        entity_id="Q1",
         health=Level.HIGH,
         power=Level.HIGH,
         speed=Level.LOW,

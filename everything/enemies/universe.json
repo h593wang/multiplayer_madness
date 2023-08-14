@@ -1,6 +1,7 @@
 {
   "name": "Universe",
   "image_path": "Hubble_ultra_deep_field.jpg",
+  "entity_id": "Q1",
   "health": "HIGH",
   "power": "HIGH",
   "speed": "LOW",
