@@ -23,6 +23,10 @@ window/size/window_width_override=960
 window/size/window_height_override=528
 window/stretch/mode="viewport"
 
+[editor]
+
+run/main_run_args="-- --server"
+
 [input]
 
 a={
