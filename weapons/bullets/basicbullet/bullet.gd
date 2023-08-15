@@ -6,7 +6,12 @@ var speed = 0
 var direction = Vector2(0,0)
 var range = 0
 var start_pos: Vector2
+var id: int
 
+func _enter_tree():
+	print(id)
+	$MultiplayerSynchronizer.set_multiplayer_authority(id)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contact_monitor = true

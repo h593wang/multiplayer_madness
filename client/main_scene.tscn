@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://btl3fgu3xey73"]
+[gd_scene load_steps=4 format=3 uid="uid://btl3fgu3xey73"]
 
 [ext_resource type="Script" path="res://client/startup.gd" id="1_fehg4"]
 [ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_735pc"]
+[ext_resource type="PackedScene" uid="uid://hhul6qb8nhsk" path="res://enemy/Enemy.tscn" id="3_o6oiw"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_fehg4")
@@ -13,9 +14,12 @@ motion_mirroring = Vector2(1920, 1920)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("2_735pc")
+centered = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://client/player.tscn", "res://weapons/bullets/basicbullet/bullet.tscn")
 spawn_path = NodePath("../Network")
 
 [node name="Network" type="Node" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("3_o6oiw")]

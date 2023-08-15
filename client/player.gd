@@ -13,9 +13,11 @@ var gun: Node2D
 var is_left_hand = false
 var gun_one_handed = true
 
+func _enter_tree():
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	if $MultiplayerSynchronizer.is_multiplayer_authority():
 		$Camera2D.make_current()
 	motion_mode = MOTION_MODE_FLOATING
