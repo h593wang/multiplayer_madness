@@ -26,8 +26,7 @@ var in_wall = false
 @export var fire_effect: PackedScene
 @export var shell_scene: PackedScene
 
-# Networking
-@export var is_authority: bool
+@export var is_controlled: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,7 +48,7 @@ func _input(event):
 		event is InputEventMouseButton 
 		and event.is_pressed() 
 		and event.button_index == MOUSE_BUTTON_LEFT 
-		and is_authority
+		and is_controlled
 	): 
 		# No ammo left, nothing to do
 		if current_ammo <= 0 and current_clip_ammo <= 0:

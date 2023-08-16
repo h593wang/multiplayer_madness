@@ -13,12 +13,16 @@ var gun: Node2D
 var is_left_hand = false
 var gun_one_handed = true
 
+var is_controlled: bool
+
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if $MultiplayerSynchronizer.is_multiplayer_authority():
+	is_controlled = $MultiplayerSynchronizer.is_multiplayer_authority()
+	
+	if is_controlled:
 		$Camera2D.make_current()
 	motion_mode = MOTION_MODE_FLOATING
 	$AnimatedSprite2D.play("idle_down")
@@ -27,6 +31,7 @@ func _ready():
 	gun_position = $AnimatedSprite2D/RightHand.position
 	gun_scale = Vector2(1,1)
 	gun.name = name
+	gun.is_controlled = is_controlled
 	add_child(gun)
 
 
@@ -41,8 +46,9 @@ func _process(delta):
 	if $AnimatedSprite2D.animation != player_animation:
 		$AnimatedSprite2D.play(player_animation)
 	
-	if !$MultiplayerSynchronizer.is_multiplayer_authority():
+	if !is_controlled:
 		return
+		
 	var direction = get_mouse_position_rotation()
 	
 	if not is_left_hand and (direction > 2 * PI/3 or direction < -2 * PI/3):
