@@ -19,20 +19,9 @@ func _ready():
 	multiplayer.multiplayer_peer = server_peer
 	multiplayer.peer_connected.connect(on_peer_connected)	
 	multiplayer.peer_disconnected.connect(on_peer_disconnected)
-
-func _process(delta):
-	pass
-
-
-func create_player(id):
-	# Instantiate a new player for this client.
-	var p = Player.instantiate() as Player
-	# Set a random position (sent on every replicator update).
-	p.global_position = Vector2(randi() % 500, randi() % 500)
-	# Add it to the "Players" node.
-	# We give the new Node a name for easy retrieval, but that's not necessary.
-	p.name = str(id)
-	get_node("/root/MainScene/Network").add_child(p)
 	
 	world = world_scene.instantiate()
 	get_tree().root.call_deferred('add_child', world)
+
+func _process(delta):
+	pass
