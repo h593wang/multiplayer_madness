@@ -101,6 +101,7 @@ func on_refresh_click():
 	reload_rooms()
 
 func on_host_local_click():
+	Globals.is_local_server = true
 	get_tree().root.call_deferred("add_child", server_scene.instantiate())
 	queue_free()
 	

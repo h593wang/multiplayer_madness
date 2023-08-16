@@ -20,7 +20,7 @@ func _enter_tree():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	is_controlled = $MultiplayerSynchronizer.is_multiplayer_authority()
+	is_controlled = Globals.is_client_controlled(str(name).to_int())
 	
 	if is_controlled:
 		$Camera2D.make_current()

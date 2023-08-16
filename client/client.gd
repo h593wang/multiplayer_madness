@@ -9,6 +9,7 @@ var world = null
 func _ready():
 	client_peer = ENetMultiplayerPeer.new()
 	client_peer.create_client(Globals.server_host, Globals.server_port)
+	Globals.client_peer_id = client_peer.get_unique_id()
 	multiplayer.multiplayer_peer = client_peer
 	
 	world = world_scene.instantiate()

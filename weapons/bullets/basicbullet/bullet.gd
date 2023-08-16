@@ -16,7 +16,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !$MultiplayerSynchronizer.is_multiplayer_authority():
+	if !Globals.is_server():
 		return
 		
 	if range != 0:
