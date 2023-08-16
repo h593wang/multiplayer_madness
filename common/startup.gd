@@ -1,17 +1,14 @@
 extends Node2D
 
-const server = preload('res://server/server.tscn')
-
-func was_started_with_server():
-	return '--server' in OS.get_cmdline_user_args()
-	
+const server_scene = preload('res://server/server.tscn')
+const client_scene = preload('res://client/lobby.tscn')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if was_started_with_server():
-		get_tree().change_scene_to_file("res://server/server.tscn")
+	if Globals.is_server():
+		get_tree().root.call_deferred('add_child', server_scene.instantiate())
 	else:
-		get_tree().change_scene_to_file("res://client/lobby.tscn")
+		get_tree().root.call_deferred('add_child', client_scene.instantiate())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

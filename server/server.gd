@@ -1,14 +1,16 @@
 extends Node2D
 
-const Player = preload("res://client/player.tscn")
+const world_scene = preload('res://common/world.tscn')
+var world = null
 
 func on_peer_connected(id):
 	print("Peer %d connected!\n" % id)
-	create_player(id)
+	world.add_player(id)
 	
 func on_peer_disconnected(id):
 	print("Peer %d disconnected!\n" % id)
-	destroy_player(id)
+	world.destroy_player(id)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +34,5 @@ func create_player(id):
 	p.name = str(id)
 	get_node("/root/MainScene/Network").add_child(p)
 	
-func destroy_player(id):
-	# Delete this peer's node.
-	get_node("/root/MainScene/Network").get_node(str(id)).queue_free()
+	world = world_scene.instantiate()
+	get_tree().root.call_deferred('add_child', world)

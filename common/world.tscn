@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_735pc"]
 [ext_resource type="PackedScene" uid="uid://hhul6qb8nhsk" path="res://enemy/Enemy.tscn" id="3_o6oiw"]
 
-[node name="MainScene" type="Node2D"]
-script = ExtResource("1_fehg4")
+[node name="world" type="Node2D"]
+script = ExtResource("1_trp01")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

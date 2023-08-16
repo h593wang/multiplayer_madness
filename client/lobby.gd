@@ -22,7 +22,7 @@ var login_token = null
 var room_poll_active = false
 
 const server_scene = preload('res://server/server.tscn')
-const client_scene = preload('res://client/main_scene.tscn')
+const client_scene = preload('res://client/client.tscn')
 	
 func select_room(room_id):
 	connect_room_id = room_id
@@ -31,7 +31,9 @@ func connect_to_server(conn_details):
 	Globals.server_host = conn_details['host']
 	Globals.server_port = conn_details['port']
 	Globals.room_id = connect_room_id
-	get_tree().change_scene_to_file("res://client/main_scene.tscn")
+	
+	get_tree().root.call_deferred("add_child", client_scene.instantiate())
+	queue_free()
 	
 func reload_rooms():
 	room_list.clear()
@@ -99,7 +101,8 @@ func on_refresh_click():
 	reload_rooms()
 
 func on_host_local_click():
-	get_tree().change_scene_to_file("res://server/server.tscn")
+	get_tree().root.call_deferred("add_child", server_scene.instantiate())
+	queue_free()
 	
 func on_join_local_click():
 	connect_to_server({
