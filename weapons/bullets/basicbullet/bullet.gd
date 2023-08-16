@@ -2,18 +2,18 @@ class_name Bullet extends RigidBody2D
 
 @export var smoke_scene: PackedScene
 @export var fall_scene: PackedScene
+
 var speed = 0
 var direction = Vector2(0,0)
 var range = 0
 var start_pos: Vector2
 var id: int
 
-func _enter_tree():
-	print(id)
-	$MultiplayerSynchronizer.set_multiplayer_authority(id)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(get_children())
+	$MultiplayerSynchronizer.set_multiplayer_authority(id)
 	contact_monitor = true
 	max_contacts_reported = 5
 	
@@ -21,6 +21,7 @@ func _ready():
 func _process(delta):
 	if !$MultiplayerSynchronizer.is_multiplayer_authority():
 		return
+		
 	if range != 0:
 		if global_position.distance_to(start_pos) > range:
 			if fall_scene != null:

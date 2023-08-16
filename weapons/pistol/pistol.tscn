@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgm0rtxp764ux"]
+[gd_scene load_steps=12 format=3 uid="uid://cgm0rtxp764ux"]
 
 [ext_resource type="Script" path="res://weapons/pistol/pistol.gd" id="1_4cu8x"]
 [ext_resource type="PackedScene" uid="uid://b5py88y4mvx8x" path="res://weapons/bullets/basicbullet/bullet.tscn" id="2_8bc7t"]
@@ -23,8 +23,6 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxfy7"]
 radius = 1.0
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mh178"]
 
 [node name="Pistol" type="Node2D"]
 z_index = 10
@@ -62,7 +60,8 @@ position = Vector2(26, -10)
 shape = SubResource("CircleShape2D_cxfy7")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_mh178")
+[node name="bullet_spawner" type="MultiplayerSpawner" parent="."]
+
+[node name="bullet_root" type="Node" parent="."]
 
 [connection signal="successful_shoot" from="BasicShootable" to="." method="_on_shootable_successful_shoot"]
