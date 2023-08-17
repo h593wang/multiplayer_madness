@@ -6,6 +6,11 @@ class_name Player extends CharacterBody2D
 @export var gun_position: Vector2
 @export var gun_zindex: int
 
+@export var health: int
+@export var dead: bool
+@export var is_invincible: bool
+var gun_free = false
+
 @export var player_animation: String
 
 @onready var walk_sounds = $player_walk_sounds
@@ -41,6 +46,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if is_invincible:
+		$AnimatedSprite2D.material.set_shader_parameter("invincible", true)
+	else:
+		$AnimatedSprite2D.material.set_shader_parameter("invincible", false)
+	if dead:
+		$AnimatedSprite2D.material.set_shader_parameter("invincible", false)
+		$AnimatedSprite2D.material.set_shader_parameter("dead", true)
+		if !gun_free:
+			gun_free = true
+			gun.queue_free()
+		global_rotation = PI/2
+		return
+		
 	$RichTextLabel.text = str(position)
 	gun.rotation = gun_rotation
 	gun.scale = gun_scale
@@ -116,6 +134,13 @@ func _process(_delta):
 	set_velocity(input_velocity)
 	move_and_slide()
 
+	for body in $Area2D.get_overlapping_areas():
+		print(body)
+		if body.get_parent() is Enemy:
+			print("hit")
+			hit()
+	Globals.current_player_health = health
+
 	
 func get_mouse_position_rotation() -> float:
 	return (get_global_mouse_position() - global_position).normalized().angle()
@@ -128,3 +153,16 @@ func get_gun_rotation(is_flipped) -> float:
 	if is_flipped:
 		return base_rotation - asin(opposite/hypotnuse) + PI
 	return base_rotation + asin(opposite/hypotnuse)
+
+func hit():
+	if is_invincible:
+		return
+	is_invincible = true
+	if $HitTimer.is_stopped():
+		$HitTimer.start()
+	health = health - 1
+	if health <= 0:
+		dead = true
+
+func _on_hit_timer_timeout():
+	is_invincible = false

@@ -29,7 +29,10 @@ func get_spawn_position():
 	return target_position + offset
 
 func on_spawn_timer_timeout():
-	if !Globals.is_server():
+	if !Globals.is_server() or world.players.is_empty():
+		return
+	if world.players.size() == 0:
+		# No one's here. Don't spawn anyone.
 		return
 	if world.players.size() == 0:
 		# No one's here. Don't spawn anyone.

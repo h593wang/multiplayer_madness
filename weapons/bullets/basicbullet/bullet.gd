@@ -1,4 +1,4 @@
-class_name Bullet extends RigidBody2D
+class_name Bullet extends StaticBody2D
 
 @export var smoke_scene: PackedScene
 @export var fall_scene: PackedScene
@@ -9,10 +9,6 @@ var bullet_range = 0
 var start_pos: Vector2
 var id: int
 	
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	contact_monitor = true
-	max_contacts_reported = 5
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
