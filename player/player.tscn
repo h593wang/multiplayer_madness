@@ -1,9 +1,11 @@
-[gd_scene load_steps=61 format=3 uid="uid://cgh0bx0ywd8gd"]
-[ext_resource type="Script" path="res://client/player.gd" id="1_y5rhm"]
-[ext_resource type="Shader" path="res://player.gdshader" id="2_1e1ot"]
-[ext_resource type="PackedScene" uid="uid://cgm0rtxp764ux" path="res://weapons/pistol/pistol.tscn" id="2_5myhi"]
-[ext_resource type="Texture2D" uid="uid://c3pwfnoeai35d" path="res://Modern tiles_Free/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_07.png" id="4_riyp1"]
-[ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="5_4xfhe"]
+[gd_scene load_steps=62 format=3 uid="uid://cgh0bx0ywd8gd"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_pd0nx"]
+[ext_resource type="PackedScene" uid="uid://cgm0rtxp764ux" path="res://weapons/pistol/pistol.tscn" id="2_nydh6"]
+[ext_resource type="Shader" path="res://player.gdshader" id="3_mduyb"]
+[ext_resource type="Texture2D" uid="uid://c3pwfnoeai35d" path="res://Modern tiles_Free/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_07.png" id="4_eey00"]
+[ext_resource type="Script" path="res://player/walk_player.gd" id="5_51sfr"]
+[ext_resource type="AudioStream" uid="uid://covgtx4qomc24" path="res://music/walk/walk_bloop_1.wav" id="6_4lpbn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aoxc"]
 resource_local_to_scene = true
@@ -449,6 +451,13 @@ properties/7/watch = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2065g"]
 size = Vector2(18, 36)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kgr5f"]
+streams_count = 1
+random_pitch = 1.01
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("6_4lpbn")
+stream_0/weight = 1.0
 
 [node name="Player" type="CharacterBody2D"]
 process_priority = -10

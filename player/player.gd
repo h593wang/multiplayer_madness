@@ -13,12 +13,16 @@ var gun_free = false
 
 @export var player_animation: String
 
+@onready var walk_sounds = $player_walk_sounds
+
 var speed = 500
 var gun: Node2D
 var is_left_hand = false
 var gun_one_handed = true
 
 var is_controlled: bool
+
+var was_moving = false
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -120,6 +124,12 @@ func _process(_delta):
 			player_animation = "walk_left"
 		else:
 			player_animation = "idle_left"
+			
+	if was_moving and not moving:
+		walk_sounds.on_walk_end()
+	if not was_moving and moving:
+		walk_sounds.on_walk_start()
+	was_moving = moving
 		
 	set_velocity(input_velocity)
 	move_and_slide()
