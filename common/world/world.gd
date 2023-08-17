@@ -7,6 +7,8 @@ var players = {}
 
 var rng = RandomNumberGenerator.new()
 
+@onready var bgm_player = $bgm_player
+
 func add_player(peer_id):
 	var p = Player.instantiate() as Player
 	p.global_position = Vector2(randi() % 500, randi() % 500)
@@ -25,4 +27,6 @@ func get_visible_bounds():
 	pass
 
 func _ready():
-	pass
+	# No need to play music on the server
+	if Globals.is_server():
+		bgm_player.playing = false
