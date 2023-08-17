@@ -7,6 +7,9 @@ server.pck
 server.tar.gz
 server.tgz
 
+# Full game export
+export/
+
 # Data shenanigans
 __pycache__/
 /.venv/
