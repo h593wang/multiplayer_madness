@@ -7,6 +7,6 @@ hathora-cloud deploy \
     --file ./server.tgz \
     --roomsPerProcess 1 \
     --planName tiny \
-    --transportType tcp \
+    --transportType tls \
     --containerPort 22222 \
     --token $1
