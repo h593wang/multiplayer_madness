@@ -30,9 +30,9 @@ jobs:
       id: deploy
       run: "./hathora-deploy.sh ${{ secrets.HATHORA_TOKEN }}"
     - name: "Create export dir"
-        run: mkdir export
+      run: mkdir export
     - name: "Export Godot web"
-        run: godot --headless --export-release "Web" export/index.html
+      run: godot --headless --export-release "Web" export/index.html
     - name: "Package Itch export"
       run: cd export && zip -r everything-survivor.zip ./
     - name: Itch upload
