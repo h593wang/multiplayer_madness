@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="7_fryos"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aoxc"]
+resource_local_to_scene = true
 shader = ExtResource("3_mduyb")
 shader_parameter/invincible = false
 shader_parameter/dead = false
