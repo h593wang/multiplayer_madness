@@ -32,7 +32,7 @@ jobs:
     - name: "Create export dir"
       run: mkdir export
     - name: "Export Godot web"
-      run: godot --export-release "Web" export/index.html
+      run: godot --headless --export-release "Web" export/index.html
     - name: "Package Itch export"
       run: cd export && zip everything-survivor.zip *
     - name: Itch upload
