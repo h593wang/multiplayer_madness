@@ -1,7 +1,7 @@
 class_name MMWorld extends Node2D
 
 @onready var player_node = $players
-const Player = preload("res://client/player.tscn")
+const Player = preload("res://player/player.tscn")
 
 @export var enemies_killed: int
 var players = {}
