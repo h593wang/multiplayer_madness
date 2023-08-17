@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3rb1a8xn2ipy"]
+[gd_scene load_steps=6 format=3 uid="uid://c3rb1a8xn2ipy"]
 
 [ext_resource type="Script" path="res://common/world/world.gd" id="1_3lxwi"]
 [ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_chk47"]

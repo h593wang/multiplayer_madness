@@ -23,6 +23,9 @@ properties/1/watch = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubqer"]
 size = Vector2(127, 127)
 
+[sub_resource type="Animation" id="Animation_6map2"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_ob56p"]
 resource_name = "hurt"
 tracks/0/type = "value"
@@ -37,9 +40,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
-
-[sub_resource type="Animation" id="Animation_6map2"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pjvg5"]
 _data = {

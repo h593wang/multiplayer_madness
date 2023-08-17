@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cgh0bx0ywd8gd"]
+[gd_scene load_steps=64 format=3 uid="uid://cgh0bx0ywd8gd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_pd0nx"]
 [ext_resource type="PackedScene" uid="uid://cgm0rtxp764ux" path="res://weapons/pistol/pistol.tscn" id="2_nydh6"]
@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c3pwfnoeai35d" path="res://Modern tiles_Free/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_07.png" id="4_eey00"]
 [ext_resource type="Script" path="res://player/walk_player.gd" id="5_51sfr"]
 [ext_resource type="AudioStream" uid="uid://covgtx4qomc24" path="res://music/walk/walk_bloop_1.wav" id="6_4lpbn"]
+[ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="7_fryos"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aoxc"]
-resource_local_to_scene = true
-shader = ExtResource("2_1e1ot")
+shader = ExtResource("3_mduyb")
 shader_parameter/invincible = false
 shader_parameter/dead = false
 
@@ -436,21 +436,6 @@ properties/4/path = NodePath(".:player_animation")
 properties/4/spawn = true
 properties/4/sync = true
 properties/4/watch = false
-properties/5/path = NodePath(".:health")
-properties/5/spawn = true
-properties/5/sync = true
-properties/5/watch = false
-properties/6/path = NodePath(".:is_invincible")
-properties/6/spawn = true
-properties/6/sync = true
-properties/6/watch = false
-properties/7/path = NodePath(".:dead")
-properties/7/spawn = true
-properties/7/sync = true
-properties/7/watch = false
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2065g"]
-size = Vector2(18, 36)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kgr5f"]
 streams_count = 1
@@ -459,12 +444,15 @@ random_volume_offset_db = 0.0
 stream_0/stream = ExtResource("6_4lpbn")
 stream_0/weight = 1.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idh80"]
+size = Vector2(20, 33)
+
 [node name="Player" type="CharacterBody2D"]
 process_priority = -10
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_y5rhm")
-gun_scene = ExtResource("2_5myhi")
+script = ExtResource("1_pd0nx")
+gun_scene = ExtResource("2_nydh6")
 health = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -501,22 +489,32 @@ offset_top = -61.0
 offset_right = 20.0
 offset_bottom = -21.0
 
-[node name="HitTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
+[node name="player_walk_sounds" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("5_51sfr")
+
+[node name="walk_timer" type="Timer" parent="player_walk_sounds"]
+
+[node name="stream_player" type="AudioStreamPlayer2D" parent="player_walk_sounds"]
+stream = SubResource("AudioStreamRandomizer_kgr5f")
+volume_db = -12.803
+pitch_scale = 0.76
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_2065g")
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_idh80")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0, 1, 0.133333, 1)
-range_layer_min = -512
+color = Color(0, 1, 0, 1)
+range_layer_min = -400
 range_layer_max = -10
-texture = ExtResource("5_4xfhe")
-texture_scale = 5.0
+texture = ExtResource("7_fryos")
+texture_scale = 4.0
 
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
