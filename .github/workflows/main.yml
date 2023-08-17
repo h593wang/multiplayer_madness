@@ -18,7 +18,7 @@ jobs:
       uses: chickensoft-games/setup-godot@v1
       with:
         version: 4.1.1
-    - name: "Export Godot project"
+    - name: "Export Godot server"
       run: godot --headless --export-pack "Hathora Server" ./server.pck
     - name: Install Node
       uses: actions/setup-node@v2
@@ -29,3 +29,16 @@ jobs:
     - name: Hathora Deploy
       id: deploy
       run: "./hathora-deploy.sh ${{ secrets.HATHORA_TOKEN }}"
+    - name: "Create export dir"
+      run: mkdir export
+    - name: "Export Godot web"
+      run: godot --export-release "Web" export/index.html
+    - name: "Package Itch export"
+      run: cd export && zip everything-survivor.zip *
+    - name: Itch upload
+      uses: robpc/itchio-upload-action@v1
+        with:
+          path: export/everything-survivor.zip
+          project: everything-survivor
+          channel: web
+          api-key: ${{ secrets.ITCH_TOKEN }}
