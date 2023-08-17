@@ -31,12 +31,6 @@ func get_spawn_position():
 func on_spawn_timer_timeout():
 	if !Globals.is_server() or world.players.is_empty():
 		return
-	if world.players.size() == 0:
-		# No one's here. Don't spawn anyone.
-		return
-	if world.players.size() == 0:
-		# No one's here. Don't spawn anyone.
-		return
 	# Do fancy spawn tables or whatever later.
 	var enemy = enemy_scene.instantiate()
 	enemy.position = get_spawn_position()

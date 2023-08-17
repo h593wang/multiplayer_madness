@@ -1,4 +1,4 @@
-Wclass_name MMWorld extends Node2D
+class_name MMWorld extends Node2D
 
 @onready var player_node = $players
 const Player = preload("res://player/player.tscn")
@@ -9,7 +9,6 @@ var players = {}
 
 var rng = RandomNumberGenerator.new()
 
-@onready var bgm_player = $bgm_player
 func _process(delta):
 	if Globals.is_server():
 		enemies_killed = Globals.enemies_killed
