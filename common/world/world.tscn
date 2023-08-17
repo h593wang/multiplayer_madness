@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3rb1a8xn2ipy"]
+
+[ext_resource type="Script" path="res://common/world/world.gd" id="1_3lxwi"]
+[ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_chk47"]
+[ext_resource type="Script" path="res://common/world/enemy_spawn.gd" id="3_tw3jl"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_3lxwi")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1920)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_chk47")
+
+[node name="player_spawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://client/player.tscn")
+spawn_path = NodePath("../players")
+
+[node name="players" type="Node" parent="."]
+
+[node name="enemies" type="Node" parent="." node_paths=PackedStringArray("world")]
+script = ExtResource("3_tw3jl")
+world = NodePath("..")
+
+[node name="spawner" type="MultiplayerSpawner" parent="enemies"]
+_spawnable_scenes = PackedStringArray("res://enemy/Enemy.tscn")
+spawn_path = NodePath("..")
+
+[node name="spawn_timer" type="Timer" parent="enemies"]

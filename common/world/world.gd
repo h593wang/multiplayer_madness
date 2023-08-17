@@ -1,7 +1,11 @@
-extends Node2D
+class_name MMWorld extends Node2D
 
 @onready var player_node = $players
 const Player = preload("res://client/player.tscn")
+
+var players = {}
+
+var rng = RandomNumberGenerator.new()
 
 func add_player(peer_id):
 	var p = Player.instantiate() as Player
@@ -9,7 +13,16 @@ func add_player(peer_id):
 	p.name = str(peer_id)
 	player_node.add_child(p, true)
 	
+	players[peer_id] = p
+
 	return p
 
 func destroy_player(peer_id):
 	player_node.get_node(str(peer_id)).queue_free()
+	players.erase(peer_id)
+	
+func get_visible_bounds():
+	pass
+
+func _ready():
+	pass

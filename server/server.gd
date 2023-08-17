@@ -1,6 +1,6 @@
 extends Node2D
 
-const world_scene = preload('res://common/world.tscn')
+const world_scene = preload('res://common/world/world.tscn')
 var world = null
 
 var players = {}

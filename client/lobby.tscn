@@ -1,23 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dptgd4wyeh1vq"]
+[gd_scene load_steps=2 format=3 uid="uid://dptgd4wyeh1vq"]
 
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
 
-[sub_resource type="GDScript" id="GDScript_fum72"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
-
 [node name="lobby" type="Node2D"]
-script = SubResource("GDScript_fum72")
 
 [node name="lobby_ui" type="Control" parent="."]
 layout_mode = 3
