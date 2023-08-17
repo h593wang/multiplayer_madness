@@ -83,6 +83,8 @@ func on_room_poll_request_complete(_result, _response_code, _headers, body):
 	var response_body = JSON.parse_string(body.get_string_from_utf8())
 	if response_body['status'] == 'active':
 		var conn_details = response_body['exposedPort']
+		# Add the websocket protocol
+		conn_details['host'] = 'wss://' + conn_details['host']
 		connect_to_server(conn_details)
 
 func on_join_click():
@@ -107,7 +109,7 @@ func on_host_local_click():
 	
 func on_join_local_click():
 	connect_to_server({
-		"host": "127.0.0.1",
+		"host": "ws://127.0.0.1",
 		"port": Globals.MULTIPLAYER_PORT
 	})
 
