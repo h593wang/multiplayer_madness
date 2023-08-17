@@ -5,6 +5,7 @@ const Player = preload("res://client/player.tscn")
 
 @export var enemies_killed: int
 var players = {}
+@onready var bgm_player = $bgm_player
 
 var rng = RandomNumberGenerator.new()
 
@@ -38,4 +39,6 @@ func get_visible_bounds():
 	pass
 
 func _ready():
-	pass
+	# No need to play music on the server
+	if Globals.is_server():
+		bgm_player.playing = false
