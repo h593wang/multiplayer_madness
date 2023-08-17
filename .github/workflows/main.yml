@@ -35,7 +35,7 @@ jobs:
     - name: "Export Godot web"
       run: godot --headless --export-release "Web" export/index.html
     - name: "Package Itch export"
-      run: cd export && zip -j everything-survivor.zip export/*.*
+      run: zip -rj everything-survivor.zip export/
     - name: Itch upload
       uses: robpc/itchio-upload-action@v1
       with:
