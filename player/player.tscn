@@ -1,9 +1,11 @@
-[gd_scene load_steps=59 format=3 uid="uid://cgh0bx0ywd8gd"]
+[gd_scene load_steps=62 format=3 uid="uid://cgh0bx0ywd8gd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_pd0nx"]
 [ext_resource type="PackedScene" uid="uid://cgm0rtxp764ux" path="res://weapons/pistol/pistol.tscn" id="2_nydh6"]
 [ext_resource type="Shader" path="res://player.gdshader" id="3_mduyb"]
 [ext_resource type="Texture2D" uid="uid://c3pwfnoeai35d" path="res://Modern tiles_Free/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_07.png" id="4_eey00"]
+[ext_resource type="Script" path="res://player/walk_player.gd" id="5_51sfr"]
+[ext_resource type="AudioStream" uid="uid://covgtx4qomc24" path="res://music/walk/walk_bloop_1.wav" id="6_4lpbn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aoxc"]
 shader = ExtResource("3_mduyb")
@@ -434,6 +436,13 @@ properties/4/spawn = true
 properties/4/sync = true
 properties/4/watch = false
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kgr5f"]
+streams_count = 1
+random_pitch = 1.01
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("6_4lpbn")
+stream_0/weight = 1.0
+
 [node name="Player" type="CharacterBody2D"]
 process_priority = -10
 collision_mask = 0
@@ -474,3 +483,13 @@ offset_left = -20.0
 offset_top = -61.0
 offset_right = 20.0
 offset_bottom = -21.0
+
+[node name="player_walk_sounds" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("5_51sfr")
+
+[node name="walk_timer" type="Timer" parent="player_walk_sounds"]
+
+[node name="stream_player" type="AudioStreamPlayer2D" parent="player_walk_sounds"]
+stream = SubResource("AudioStreamRandomizer_kgr5f")
+volume_db = -12.803
+pitch_scale = 0.76
