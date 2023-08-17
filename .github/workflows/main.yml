@@ -34,11 +34,11 @@ jobs:
     - name: "Export Godot web"
       run: godot --headless --export-release "Web" export/index.html
     - name: "Package Itch export"
-      run: cd export && zip -r everything-survivor.zip . -i ./
+      run: cd export && zip -r -j everything-survivor.zip export/
     - name: Itch upload
       uses: robpc/itchio-upload-action@v1
       with:
-        path: export/everything-survivor.zip
+        path: everything-survivor.zip
         project: palepeak/everything-survivor
         channel: web
         api-key: ${{ secrets.ITCH_TOKEN }}
