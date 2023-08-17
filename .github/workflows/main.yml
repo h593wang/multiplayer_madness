@@ -37,8 +37,8 @@ jobs:
       run: cd export && zip everything-survivor.zip *
     - name: Itch upload
       uses: robpc/itchio-upload-action@v1
-        with:
-          path: export/everything-survivor.zip
-          project: everything-survivor
-          channel: web
-          api-key: ${{ secrets.ITCH_TOKEN }}
+      with:
+        path: export/everything-survivor.zip
+        project: everything-survivor
+        channel: web
+        api-key: ${{ secrets.ITCH_TOKEN }}
