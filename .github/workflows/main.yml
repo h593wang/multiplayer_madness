@@ -32,9 +32,9 @@ jobs:
     - name: "Create export dir"
       run: mkdir export
     - name: "Export Godot web"
-      run: godot --headless --export-release "Web" export/index.html
+        run: godot --headless --export-release "Web" export/index.html
     - name: "Package Itch export"
-      run: cd export && zip everything-survivor.zip *
+      run: cd export && zip -r everything-survivor.zip ./
     - name: Itch upload
       uses: robpc/itchio-upload-action@v1
       with:
