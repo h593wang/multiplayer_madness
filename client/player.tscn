@@ -1,14 +1,16 @@
-[gd_scene load_steps=59 format=3 uid="uid://cgh0bx0ywd8gd"]
+[gd_scene load_steps=61 format=3 uid="uid://cgh0bx0ywd8gd"]
 
 [ext_resource type="Script" path="res://client/player.gd" id="1_y5rhm"]
 [ext_resource type="Shader" path="res://player.gdshader" id="2_1e1ot"]
 [ext_resource type="PackedScene" uid="uid://cgm0rtxp764ux" path="res://weapons/pistol/pistol.tscn" id="2_5myhi"]
 [ext_resource type="Texture2D" uid="uid://c3pwfnoeai35d" path="res://Modern tiles_Free/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_07.png" id="4_riyp1"]
+[ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="5_4xfhe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aoxc"]
+resource_local_to_scene = true
 shader = ExtResource("2_1e1ot")
-shader_parameter/line_color = Color(0, 1, 1, 1)
-shader_parameter/line_thickness = 1.0
+shader_parameter/invincible = false
+shader_parameter/dead = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tmohb"]
 atlas = ExtResource("4_riyp1")
@@ -433,6 +435,21 @@ properties/4/path = NodePath(".:player_animation")
 properties/4/spawn = true
 properties/4/sync = true
 properties/4/watch = false
+properties/5/path = NodePath(".:health")
+properties/5/spawn = true
+properties/5/sync = true
+properties/5/watch = false
+properties/6/path = NodePath(".:is_invincible")
+properties/6/spawn = true
+properties/6/sync = true
+properties/6/watch = false
+properties/7/path = NodePath(".:dead")
+properties/7/spawn = true
+properties/7/sync = true
+properties/7/watch = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2065g"]
+size = Vector2(18, 36)
 
 [node name="Player" type="CharacterBody2D"]
 process_priority = -10
@@ -440,6 +457,7 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_y5rhm")
 gun_scene = ExtResource("2_5myhi")
+health = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_3aoxc")
@@ -474,3 +492,23 @@ offset_left = -20.0
 offset_top = -61.0
 offset_right = 20.0
 offset_bottom = -21.0
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_2065g")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 1, 0.133333, 1)
+range_layer_min = -512
+range_layer_max = -10
+texture = ExtResource("5_4xfhe")
+texture_scale = 5.0
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

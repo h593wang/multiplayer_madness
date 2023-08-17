@@ -1,25 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3rb1a8xn2ipy"]
+[gd_scene load_steps=5 format=3 uid="uid://c3rb1a8xn2ipy"]
 
 [ext_resource type="Script" path="res://common/world/world.gd" id="1_3lxwi"]
 [ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://Modern tiles_Free/grass.png" id="2_chk47"]
 [ext_resource type="Script" path="res://common/world/enemy_spawn.gd" id="3_tw3jl"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1h00a"]
+properties/0/path = NodePath("../..:enemies_killed")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
 [node name="world" type="Node2D"]
 script = ExtResource("1_3lxwi")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Enemies_killed" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = 123.0
+grow_horizontal = 0
+
+[node name="Health" type="Label" parent="UI"]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 140.0
+offset_bottom = 123.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -10
 motion_mirroring = Vector2(1920, 1920)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("2_chk47")
+centered = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]
+z_index = 100
+color = Color(0.105882, 0.105882, 0.105882, 1)
 
 [node name="player_spawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://client/player.tscn")
 spawn_path = NodePath("../players")
 
 [node name="players" type="Node" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../UI/Enemies_killed")
+replication_config = SubResource("SceneReplicationConfig_1h00a")
 
 [node name="enemies" type="Node" parent="." node_paths=PackedStringArray("world")]
 script = ExtResource("3_tw3jl")

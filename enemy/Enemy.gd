@@ -1,11 +1,14 @@
-class_name Enemy extends Node2D
+class_name Enemy extends CharacterBody2D
 
 @export var world: MMWorld
+@export var hurt: String
+@export var previous: String
 
 @onready var target_timer = $target_timer
 
 @export var retarget_time_secs = 2
-@export var move_speed = 300
+@export var move_speed = 200
+@export var health = 2
 
 var target_player: Node2D = null
 
@@ -37,8 +40,22 @@ func _ready():
 		
 func _process(delta):
 	if !Globals.is_server():
+		if hurt != null and hurt != previous:
+			previous = hurt
+			$AnimationPlayer.play("hurt")
 		return
 		
+	if health == 0:
+		Globals.enemies_killed += 1
+		queue_free()
+	
 	if target_player != null:
-		position = position.move_toward(target_player.position, move_speed * delta)
+		var angle = (target_player.global_position - global_position).normalized()
+		set_velocity(angle * move_speed)
+		move_and_slide()
 		
+	for body in $Area2D.get_overlapping_bodies():
+		if body is Bullet:
+			hurt = OS.get_unique_id()
+			body.queue_free()
+			health -= 1

@@ -14,7 +14,10 @@ var STARTUP_MODE = null
 var is_local_server = false
 
 var was_started_as_server = '--server' in OS.get_cmdline_user_args()
-	
+
+var enemies_killed = 0
+var current_player_health = 3
+
 func get_startup_mode():
 	if was_started_as_server || is_local_server:
 		return StartupMode.Server
