@@ -28,7 +28,7 @@ func rpc_server_fire():
 			bullet_speed
 		)
 		bullet_count += 1
-		bullet.range = 1000
+		bullet.bullet_range = 1000
 		bullet_root.add_child(bullet, true)
 
 func _on_shootable_successful_shoot():

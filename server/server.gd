@@ -25,5 +25,5 @@ func _ready():
 	world = world_scene.instantiate()
 	get_tree().root.call_deferred('add_child', world)
 
-func _process(delta):
+func _process(_delta):
 	pass

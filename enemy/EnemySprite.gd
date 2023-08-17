@@ -16,7 +16,7 @@ func _ready():
 
 
 	# Called when the HTTP request is completed.
-func _http_request_completed(_result, response_code, headers, body):
+func _http_request_completed(_result, _response_code, _headers, body):
 	var image = Image.new()
 	var image_error = image.load_jpg_from_buffer(body)
 	var image_scale = min(100.0 / image.get_height(), 100.0/image.get_width())

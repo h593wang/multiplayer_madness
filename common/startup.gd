@@ -9,8 +9,3 @@ func _ready():
 		get_tree().root.call_deferred('add_child', server_scene.instantiate())
 	else:
 		get_tree().root.call_deferred('add_child', client_scene.instantiate())
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

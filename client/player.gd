@@ -36,7 +36,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$RichTextLabel.text = str(position)
 	gun.rotation = gun_rotation
 	gun.scale = gun_scale
@@ -65,20 +65,20 @@ func _process(delta):
 	gun_rotation = get_gun_rotation(is_left_hand)
 	gun_zindex = z_index+1
 	
-	var velocity = Vector2.ZERO # The player's movement vector.
+	var input_velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("d"):
-		velocity.x += 1
+		input_velocity.x += 1
 	if Input.is_action_pressed("a"):
-		velocity.x -= 1
+		input_velocity.x -= 1
 	if Input.is_action_pressed("s"):
-		velocity.y += 1
+		input_velocity.y += 1
 	if Input.is_action_pressed("w"):
-		velocity.y -= 1
+		input_velocity.y -= 1
 
 	var moving = false
-	if velocity.length() > 0:
+	if input_velocity.length() > 0:
 		moving = true
-		velocity = velocity.normalized() * speed
+		input_velocity = input_velocity.normalized() * speed
 	
 	# Setting moving animation
 	if direction > PI/4 and direction <= 3 * PI/4:
@@ -103,7 +103,7 @@ func _process(delta):
 		else:
 			player_animation = "idle_left"
 		
-	set_velocity(velocity)
+	set_velocity(input_velocity)
 	move_and_slide()
 
 	

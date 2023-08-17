@@ -5,7 +5,7 @@ class_name Bullet extends RigidBody2D
 
 var speed = 0
 var direction = Vector2(0,0)
-var range = 0
+var bullet_range = 0
 var start_pos: Vector2
 var id: int
 	
@@ -19,8 +19,8 @@ func _process(delta):
 	if !Globals.is_server():
 		return
 		
-	if range != 0:
-		if global_position.distance_to(start_pos) > range:
+	if bullet_range != 0:
+		if global_position.distance_to(start_pos) > bullet_range:
 			if fall_scene != null:
 				var fall = fall_scene.instantiate() as GPUParticles2D
 				fall.global_position = global_position
@@ -41,8 +41,8 @@ func _process(delta):
 			queue_free()
 		pass
 		
-func fire(start_pos, direction, speed):
-	self.global_position = start_pos
-	self.start_pos = start_pos
-	self.speed = speed
-	self.direction = direction
+func fire(new_start_pos, new_direction, new_speed):
+	self.global_position = new_start_pos
+	self.start_pos = new_start_pos
+	self.speed = new_speed
+	self.direction = new_direction

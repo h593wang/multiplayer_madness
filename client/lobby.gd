@@ -39,7 +39,7 @@ func reload_rooms():
 	room_list.clear()
 	room_list_request.request(room_list_url)
 
-func on_room_request_complete(result, response_code, headers, body):
+func on_room_request_complete(_result, _response_code, _headers, body):
 	var rooms = JSON.parse_string(body.get_string_from_utf8())
 	if len(rooms) == 0:
 		room_list.add_item('No rooms found.')
@@ -47,7 +47,7 @@ func on_room_request_complete(result, response_code, headers, body):
 		for room in rooms:
 			room_list.add_item(room['roomId'])
 			
-func on_host_request_complete(result, response_code, headers, body):
+func on_host_request_complete(_result, _response_code, _headers, body):
 	var response_body = JSON.parse_string(body.get_string_from_utf8())
 	
 	select_room(response_body['roomId'])	
@@ -71,14 +71,14 @@ func on_host_click():
 	}
 	host_request.request(room_host_url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
 
-func on_login_request_complete(result, response_code, headers, body):
+func on_login_request_complete(_result, _response_code, _headers, body):
 	var response_body = JSON.parse_string(body.get_string_from_utf8())
 	login_token = response_body['token']
 	# We're logged in to Hathora. Enable our buttons.
 	host_button.disabled = false
 	join_button.disabled = false
 	
-func on_room_poll_request_complete(result, response_code, headers, body):
+func on_room_poll_request_complete(_result, _response_code, _headers, body):
 	room_poll_active = false
 	var response_body = JSON.parse_string(body.get_string_from_utf8())
 	if response_body['status'] == 'active':
@@ -128,7 +128,7 @@ func _ready():
 	reload_rooms()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Continuously poll the hosted room, if we have one
 	if connect_room_id != null and not room_poll_active:
 		room_poll_active = true
