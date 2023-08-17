@@ -5,6 +5,8 @@ var world = null
 
 var players = {}
 
+var server_peer: WebSocketMultiplayerPeer = null
+
 func on_peer_connected(id):
 	print("Peer %d connected!\n" % id)
 	var player = world.add_player(id)
@@ -16,7 +18,7 @@ func on_peer_disconnected(id):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var server_peer = ENetMultiplayerPeer.new()
+	server_peer = WebSocketMultiplayerPeer.new()
 	server_peer.create_server(Globals.MULTIPLAYER_PORT)
 	multiplayer.multiplayer_peer = server_peer
 	multiplayer.peer_connected.connect(on_peer_connected)	
@@ -26,4 +28,4 @@ func _ready():
 	get_tree().root.call_deferred('add_child', world)
 
 func _process(_delta):
-	pass
+	server_peer.poll()
