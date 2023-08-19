@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bafrsrnmg6j3m"]
+[gd_scene load_steps=15 format=3 uid="uid://bafrsrnmg6j3m"]
 
+[ext_resource type="Script" path="res://client/lobby_root.gd" id="1_7jjli"]
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
 [ext_resource type="Texture2D" uid="uid://unrcyc66ungy" path="res://common/bg.png" id="2_ey5c4"]
 [ext_resource type="Shader" path="res://client/glitch.gdshader" id="2_k0oqo"]
@@ -45,21 +46,23 @@ frame_1/texture = ExtResource("5_qiqyj")
 frame_1/duration = 0.5
 
 [node name="lobby" type="Node2D"]
+z_index = 1000
+script = ExtResource("1_7jjli")
 
-[node name="lobby_ui" type="Control" parent="."]
+[node name="lobby_bg" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 956.0
-offset_bottom = 525.0
-script = ExtResource("1_g56nr")
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="bg" type="TextureRect" parent="lobby_ui"]
+[node name="bg" type="TextureRect" parent="lobby_bg"]
 z_index = -100
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_ey5c4")
 
-[node name="TextureRect" type="TextureRect" parent="lobby_ui"]
+[node name="lightrays" type="TextureRect" parent="lobby_bg"]
 z_index = -100
 material = SubResource("ShaderMaterial_58u7j")
 layout_mode = 0
@@ -67,13 +70,20 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_ey5c4")
 
-[node name="gridspawner" type="GPUParticles2D" parent="lobby_ui"]
+[node name="gridspawner" type="GPUParticles2D" parent="lobby_bg"]
 position = Vector2(960, 738)
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_kir6c")
 texture = ExtResource("3_ebdrt")
 lifetime = 10.0
 preprocess = 10.0
+
+[node name="lobby_ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 956.0
+offset_bottom = 525.0
+script = ExtResource("1_g56nr")
 
 [node name="room_list" type="ItemList" parent="lobby_ui"]
 layout_mode = 0
@@ -192,3 +202,6 @@ layout_mode = 2
 layout_mode = 2
 texture = SubResource("AnimatedTexture_eei7s")
 expand_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

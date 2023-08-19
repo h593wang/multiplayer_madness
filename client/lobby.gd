@@ -32,8 +32,10 @@ func connect_to_server(conn_details):
 	Globals.server_port = conn_details['port']
 	Globals.room_id = connect_room_id
 	
-	get_tree().root.call_deferred("add_child", client_scene.instantiate())
-	queue_free()
+	var game_instance = client_scene.instantiate()
+	game_instance.name = "GameInstance"
+	get_tree().root.call_deferred("add_child", game_instance)
+	get_parent().set_show_lobby(false)
 	
 func reload_rooms():
 	room_list.clear()

@@ -22,6 +22,8 @@ func get_closest_player():
 	var min_dist = 999999999999999
 	
 	for p in players:
+		if p.dead:
+			continue
 		var dist = global_position.distance_to(p.global_position)
 		if dist < min_dist:
 			min_dist = dist

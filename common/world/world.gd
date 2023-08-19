@@ -14,9 +14,14 @@ func _process(delta):
 		enemies_killed = Globals.enemies_killed
 	else:
 		Globals.enemies_killed = enemies_killed	
-		
-	$UI/Health.text = "Health: " + str(Globals.current_player_health) + "/3"
-	$UI/Enemies_killed.text = "Enemies Killed: " + str(Globals.enemies_killed)
+	
+	if Globals.current_player_health > 0:
+		$UI.visible = true
+		$UI/Health.text = "Health: " + str(Globals.current_player_health) + "/3"
+		$UI/Enemies_killed.text = "Enemies Killed: " + str(Globals.enemies_killed)
+	else:
+		$UI.visible = false
+		$bgm_player.playing = false
 
 func add_player(peer_id):
 	var p = Player.instantiate() as Player
@@ -39,6 +44,7 @@ func get_visible_bounds():
 	pass
 
 func _ready():
+	Globals.player_dead.connect(queue_free)
 	# No need to play music on the server
 	if Globals.is_server():
 		bgm_player.playing = false

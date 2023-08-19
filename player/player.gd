@@ -9,7 +9,8 @@ class_name Player extends CharacterBody2D
 @export var health: int
 @export var dead: bool
 @export var is_invincible: bool
-var gun_free = false
+var death_scene = preload("res://player/player_death.tscn")
+var death_processed = false
 
 @export var player_animation: String
 
@@ -50,13 +51,18 @@ func _process(_delta):
 		$AnimatedSprite2D.material.set_shader_parameter("invincible", true)
 	else:
 		$AnimatedSprite2D.material.set_shader_parameter("invincible", false)
-	if dead:
+	if dead and not death_processed:
+		death_processed = true
 		$AnimatedSprite2D.material.set_shader_parameter("invincible", false)
 		$AnimatedSprite2D.material.set_shader_parameter("dead", true)
-		if !gun_free:
-			gun_free = true
-			gun.queue_free()
-		global_rotation = PI/2
+		
+		$AnimatedSprite2D.global_rotation = PI/2
+		if is_controlled:
+			var ds = death_scene.instantiate() as PlayerDeath
+			add_child(ds)
+		gun.queue_free()
+		return
+	if dead:
 		return
 		
 	$RichTextLabel.text = str(position)
@@ -135,9 +141,7 @@ func _process(_delta):
 	move_and_slide()
 
 	for body in $Area2D.get_overlapping_areas():
-		print(body)
 		if body.get_parent() is Enemy:
-			print("hit")
 			hit()
 	Globals.current_player_health = health
 
