@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3rb1a8xn2ipy"]
+[gd_scene load_steps=8 format=3 uid="uid://c3rb1a8xn2ipy"]
 
 [ext_resource type="Script" path="res://common/world/world.gd" id="1_3lxwi"]
 [ext_resource type="Texture2D" uid="uid://dyekrh8e00f57" path="res://resources/health1.png" id="2_74pj7"]
 [ext_resource type="Texture2D" uid="uid://dyjiwd51ne4s5" path="res://resources/grass.png" id="3_ak5ge"]
 [ext_resource type="Script" path="res://common/world/enemy_spawn.gd" id="3_tw3jl"]
 [ext_resource type="AudioStream" uid="uid://cvbht7r1bckrw" path="res://music/rollin_at_5.mp3" id="4_kapbg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r8j24"]
+font_size = 40
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1h00a"]
 properties/0/path = NodePath("../..:enemies_killed")
@@ -26,6 +31,7 @@ offset_top = 100.0
 offset_right = -100.0
 offset_bottom = 123.0
 grow_horizontal = 0
+label_settings = SubResource("LabelSettings_r8j24")
 
 [node name="HealthRow" type="HBoxContainer" parent="UI"]
 offset_left = 100.0
