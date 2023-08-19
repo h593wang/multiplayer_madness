@@ -112,7 +112,7 @@ func on_join_local_click():
 		"host": "ws://127.0.0.1",
 		"port": Globals.MULTIPLAYER_PORT
 	})
-
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	room_list_request.request_completed.connect(on_room_request_complete)
@@ -136,3 +136,4 @@ func _process(_delta):
 		room_poll_active = true
 		var url = room_poll_url.format({ 'roomId': connect_room_id })
 		room_poll_request.request(url)
+		

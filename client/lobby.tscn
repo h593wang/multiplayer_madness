@@ -1,17 +1,79 @@
-[gd_scene load_steps=2 format=3 uid="uid://dptgd4wyeh1vq"]
+[gd_scene load_steps=14 format=3 uid="uid://bafrsrnmg6j3m"]
 
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
+[ext_resource type="Texture2D" uid="uid://unrcyc66ungy" path="res://common/bg.png" id="2_ey5c4"]
+[ext_resource type="Shader" path="res://client/glitch.gdshader" id="2_k0oqo"]
+[ext_resource type="Script" path="res://client/entry_ui.gd" id="2_wailj"]
+[ext_resource type="Texture2D" uid="uid://dvtyul4rttvco" path="res://common/frame1-1.png" id="3_b41dp"]
+[ext_resource type="Texture2D" uid="uid://pci7un0qonye" path="res://common/grid_bar.png" id="3_ebdrt"]
+[ext_resource type="FontFile" uid="uid://lhyet1gmxgiy" path="res://common/upheavtt.ttf" id="3_r8kd2"]
+[ext_resource type="Texture2D" uid="uid://ddf6m4gcllee4" path="res://common/click_to_advance1.png" id="4_ww5w2"]
+[ext_resource type="Texture2D" uid="uid://b3upocmiylw73" path="res://common/click_to_advance2.png" id="5_qiqyj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58u7j"]
+shader = ExtResource("2_k0oqo")
+shader_parameter/angle = 0.0
+shader_parameter/position = 0.0
+shader_parameter/spread = 1.0
+shader_parameter/cutoff = -1.0
+shader_parameter/falloff = 1.0
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 2.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(1, 0.137255, 0.886275, 0.137255)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kir6c"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e44l"]
+font = ExtResource("3_r8kd2")
+font_size = 60
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_eei7s"]
+frames = 2
+frame_0/texture = ExtResource("4_ww5w2")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("5_qiqyj")
+frame_1/duration = 0.5
 
 [node name="lobby" type="Node2D"]
 
 [node name="lobby_ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 959.0
-offset_bottom = 528.0
+offset_right = 956.0
+offset_bottom = 525.0
 script = ExtResource("1_g56nr")
+
+[node name="bg" type="TextureRect" parent="lobby_ui"]
+z_index = -100
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_ey5c4")
+
+[node name="TextureRect" type="TextureRect" parent="lobby_ui"]
+z_index = -100
+material = SubResource("ShaderMaterial_58u7j")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_ey5c4")
+
+[node name="gridspawner" type="GPUParticles2D" parent="lobby_ui"]
+position = Vector2(960, 738)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_kir6c")
+texture = ExtResource("3_ebdrt")
+lifetime = 10.0
+preprocess = 10.0
 
 [node name="room_list" type="ItemList" parent="lobby_ui"]
 layout_mode = 0
@@ -72,3 +134,61 @@ text = "Join Local"
 [node name="login_request" type="HTTPRequest" parent="lobby_ui"]
 
 [node name="room_poll_request" type="HTTPRequest" parent="lobby_ui"]
+
+[node name="entry_ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("2_wailj")
+
+[node name="background" type="ColorRect" parent="entry_ui"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="cutscene_image" type="TextureRect" parent="entry_ui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -540.0
+offset_right = 446.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_b41dp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="entry_ui"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="entry_ui/HBoxContainer"]
+layout_mode = 2
+text = "*Flick*"
+label_settings = SubResource("LabelSettings_0e44l")
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="entry_ui/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="entry_ui/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_eei7s")
+expand_mode = 2
