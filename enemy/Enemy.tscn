@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" path="res://enemy/Enemy.gd" id="1_y1c4d"]
 [ext_resource type="Shader" path="res://enemy/Enemy.gdshader" id="2_dkccc"]
-[ext_resource type="Texture2D" uid="uid://cgluc7wqjptja" path="res://icon.svg" id="2_j4jot"]
 [ext_resource type="Script" path="res://enemy/EnemySprite.gd" id="3_q1pl3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_usn28"]
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fao0b"]
 resource_local_to_scene = true
@@ -25,7 +29,7 @@ properties/2/sync = true
 properties/2/watch = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubqer"]
-size = Vector2(127, 127)
+size = Vector2(120, 120)
 
 [sub_resource type="Animation" id="Animation_6map2"]
 length = 0.001
@@ -60,10 +64,25 @@ collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_y1c4d")
 
+[node name="Label" type="Label" parent="."]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -10.5
+offset_right = 41.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING"
+label_settings = SubResource("LabelSettings_usn28")
+
 [node name="EnemySprite" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_fao0b")
-texture = ExtResource("2_j4jot")
 region_rect = Rect2(36, 27.5, 50, 74)
 script = ExtResource("3_q1pl3")
 
