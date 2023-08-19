@@ -2,6 +2,8 @@ class_name MMWorld extends Node2D
 
 @onready var player_node = $players
 const Player = preload("res://player/player.tscn")
+@onready var heart_filled = ImageTexture.create_from_image(Image.load_from_file("res://resources/health1.png"))
+@onready var heart_empty = ImageTexture.create_from_image(Image.load_from_file("res://resources/health2.png"))
 
 @export var enemies_killed: int
 var players = {}
@@ -17,11 +19,25 @@ func _process(delta):
 	
 	if Globals.current_player_health > 0:
 		$UI.visible = true
-		$UI/Health.text = "Health: " + str(Globals.current_player_health) + "/3"
+		if Globals.current_player_health == 3:
+			$UI/HealthRow/Heart1.texture = heart_filled
+			$UI/HealthRow/Heart2.texture = heart_filled
+			$UI/HealthRow/Heart3.texture = heart_filled
+		elif Globals.current_player_health == 2:
+			$UI/HealthRow/Heart1.texture = heart_filled
+			$UI/HealthRow/Heart2.texture = heart_filled
+			$UI/HealthRow/Heart3.texture = heart_empty
+		elif Globals.current_player_health == 1:
+			$UI/HealthRow/Heart1.texture = heart_filled
+			$UI/HealthRow/Heart2.texture = heart_empty
+			$UI/HealthRow/Heart3.texture = heart_empty
+		else:
+			$UI/HealthRow/Heart1.texture = heart_empty
+			$UI/HealthRow/Heart2.texture = heart_empty
+			$UI/HealthRow/Heart3.texture = heart_empty
 		$UI/Enemies_killed.text = "Enemies Killed: " + str(Globals.enemies_killed)
 	else:
 		$UI.visible = false
-		$bgm_player.playing = false
 
 func add_player(peer_id):
 	var p = Player.instantiate() as Player

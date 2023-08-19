@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://weapons/bullets/basicbullet/bullet.gd" id="1_ki8l1"]
 [ext_resource type="PackedScene" uid="uid://cu5e6abnmsedj" path="res://weapons/bullets/BulletSmoke.tscn" id="2_4126n"]
-[ext_resource type="Texture2D" uid="uid://cdbghpogdu4ol" path="res://Modern tiles_Free/bullet.png" id="2_ksqlj"]
 [ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="3_7qo7x"]
 [ext_resource type="PackedScene" uid="uid://dk6qayn760err" path="res://weapons/bullets/BulletFall.tscn" id="3_dd6al"]
+[ext_resource type="Texture2D" uid="uid://cdbghpogdu4ol" path="res://resources/bullet.png" id="4_ksxkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgkin"]
 size = Vector2(12, 8)
@@ -28,7 +28,7 @@ smoke_scene = ExtResource("2_4126n")
 fall_scene = ExtResource("3_dd6al")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ksqlj")
+texture = ExtResource("4_ksxkn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kgkin")

@@ -11,6 +11,3 @@ func set_show_lobby(show: bool = true):
 		var game_instance = get_tree().root.get_node("GameInstance")
 		if game_instance != null:
 			game_instance.queue_free()
-		var game_world = get_tree().root.get_node("GameWorld")
-		if game_world != null:
-			game_world.queue_free()
