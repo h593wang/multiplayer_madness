@@ -19,6 +19,10 @@ properties/1/path = NodePath(".:hurt")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
+properties/2/path = NodePath(".:death_rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubqer"]
 size = Vector2(127, 127)

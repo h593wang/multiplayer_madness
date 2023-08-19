@@ -10,6 +10,9 @@ class_name Enemy extends CharacterBody2D
 @export var move_speed = 200
 @export var health = 2
 
+@export var death_rotation: float
+var death_scene = preload("res://enemy/EnemyDeath.tscn")
+
 var target_player: Node2D = null
 
 func get_closest_player():
@@ -44,10 +47,6 @@ func _process(delta):
 			previous = hurt
 			$AnimationPlayer.play("hurt")
 		return
-		
-	if health == 0:
-		Globals.enemies_killed += 1
-		queue_free()
 	
 	if target_player != null:
 		var angle = (target_player.global_position - global_position).normalized()
@@ -59,3 +58,15 @@ func _process(delta):
 			hurt = OS.get_unique_id()
 			body.queue_free()
 			health -= 1
+			death_rotation = body.global_rotation
+			if health == 0:
+				Globals.enemies_killed += 1
+				queue_free()
+
+
+
+func _exit_tree():
+	var death_particle = death_scene.instantiate()
+	death_particle.global_rotation = death_rotation
+	death_particle.global_position = global_position
+	get_tree().root.add_child(death_particle)
