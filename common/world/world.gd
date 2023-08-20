@@ -68,7 +68,7 @@ func _ready():
 	if Globals.is_server():
 		bgm_player.playing = false
 	Globals.boss_spawned.connect(play_boss_music)
-	Globals.boss_k.connect(play_boss_music)
+	Globals.boss_killed.connect(stop_boss_music)
 
 func play_boss_music():
 	bgm_player.playing = false
