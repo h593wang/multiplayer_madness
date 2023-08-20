@@ -15,6 +15,7 @@ var death_scene = preload("res://enemy/EnemyDeath.tscn")
 var target_player: Node2D = null
 
 @export var image_url: String
+@export var enemy_name: String
 
 @export var is_boss = false
 var can_charge = false
@@ -45,6 +46,7 @@ func _ready():
 	if is_boss:
 		$Node/BossChargeTimer.start()
 	$EnemySprite.url = image_url
+	$EnemyName.text = enemy_name
 	if Globals.is_server():
 		target_timer.wait_time = retarget_time_secs
 		target_timer.timeout.connect(retarget)

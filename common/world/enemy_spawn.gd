@@ -45,7 +45,7 @@ func on_spawn_timer_timeout():
 		return
 	if Globals.boss_spawned:
 		return
-	var enemy = enemy_scene.instantiate()
+	var enemy = enemy_scene.instantiate() as Enemy
 	var enemy_type = get_random_enemy_type()
 	enemy.position = get_spawn_position()
 	enemy.world = world
@@ -61,7 +61,7 @@ func on_spawn_timer_timeout():
 		enemy.move_speed = 300
 
 	enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + enemy_type["image_path"]
-
+	enemy.enemy_name = enemy_type["name"]
 	if Globals.enemies_killed >= 100 && !Globals.boss_spawned:
 		enemy.is_boss = true
 		enemy.health *= 20
