@@ -34,10 +34,8 @@ func crop_to_centre_square(image):
 	var s = min(w, h)
 	cropped.create(s, s, false, image.get_format())
 	cropped.blit_rect(image, Rect2(
-		int((w-s)/2.0),
-		int((h-s)/2.0),
-		int((w+s)/2.0),
-		int((h+s)/2.0)
+		(int((w-s)/2.0), int((h-s)/2.0)),
+		(int(s), int(s))
 	), Vector2(0, 0))
 	return cropped
 
