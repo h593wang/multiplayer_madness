@@ -45,34 +45,36 @@ func on_spawn_timer_timeout():
 		return
 	if Globals.boss_spawned:
 		return
-	var enemy = enemy_scene.instantiate() as Enemy
-	var enemy_type = get_random_enemy_type()
-	enemy.position = get_spawn_position()
-	enemy.world = world
+	
+	var spawn_group_size = 2*(Globals.enemies_killed/10) + 1
+	for i in spawn_group_size:
+		var enemy = enemy_scene.instantiate() as Enemy
+		var enemy_type = get_random_enemy_type()
+		enemy.position = get_spawn_position()
+		enemy.world = world
 
-	if enemy_type["health"] == "LOW":
-		enemy.health = 1
-	elif enemy_type["health"] == "HIGH":
-		enemy.health = 4
+		if enemy_type["health"] == "LOW":
+			enemy.health = 1
+		elif enemy_type["health"] == "HIGH":
+			enemy.health = 4
 
-	if enemy_type["speed"] == "LOW":
-		enemy.move_speed = 100
-	elif enemy_type["speed"] == "HIGH":
-		enemy.move_speed = 300
+		if enemy_type["speed"] == "LOW":
+			enemy.move_speed = 100
+		elif enemy_type["speed"] == "HIGH":
+			enemy.move_speed = 300
 
-	var image_path: String = enemy_type["image_path"]
-	enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + image_path.replace(",", "%2C")
-	if image_path.to_lower().ends_with("jpg") or image_path.to_lower().ends_with("jpeg"):
-		enemy.image_format = 'jpg'
-	else:
-		enemy.image_format = 'png'
-	enemy.enemy_name = enemy_type["name"]
-	if Globals.enemies_killed >= 100 && !Globals.boss_spawned:
-		enemy.is_boss = true
-		enemy.health *= 20
-		Globals.boss_spawned = true
-	call_deferred('add_child', enemy, true)
-	return
+		var image_path: String = enemy_type["image_path"]
+		enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + image_path.replace(",", "%2C")
+		if image_path.to_lower().ends_with("jpg") or image_path.to_lower().ends_with("jpeg"):
+			enemy.image_format = 'jpg'
+		else:
+			enemy.image_format = 'png'
+		enemy.enemy_name = enemy_type["name"]
+		if Globals.enemies_killed >= 50 && !Globals.boss_spawned:
+			enemy.is_boss = true
+			enemy.health *= 20
+			Globals.boss_spawned = true
+		call_deferred('add_child', enemy, true)
 
 
 # Called when the node enters the scene tree for the first time.
