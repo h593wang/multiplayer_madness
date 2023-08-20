@@ -2,8 +2,8 @@ class_name MMWorld extends Node2D
 
 @onready var player_node = $players
 const Player = preload("res://player/player.tscn")
-@onready var heart_filled = ImageTexture.create_from_image(Image.load_from_file("res://resources/health1.png"))
-@onready var heart_empty = ImageTexture.create_from_image(Image.load_from_file("res://resources/health2.png"))
+@onready var heart_filled = preload("res://resources/health1.png")
+@onready var heart_empty = preload("res://resources/health2.png")
 
 @export var enemies_killed: int
 var players = {}
