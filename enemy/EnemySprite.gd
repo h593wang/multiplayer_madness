@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const test_url = "https://commons.wikimedia.org/w/thumb.php?width=240&f=Hubble_ultra_deep_field.jpg"
+const test_url = "https://crossorigin.me/https://commons.wikimedia.org/w/thumb.php?width=240&f=Hubble_ultra_deep_field.jpg"
 var sprite2d
 
 func _ready():
