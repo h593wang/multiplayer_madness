@@ -67,4 +67,13 @@ func _ready():
 	# No need to play music on the server
 	if Globals.is_server():
 		bgm_player.playing = false
+	Globals.boss_spawned.connect(play_boss_music)
+	Globals.boss_k.connect(play_boss_music)
 
+func play_boss_music():
+	bgm_player.playing = false
+	$boss_bgm_player.playing = true
+	
+func stop_boss_music():
+	bgm_player.playing = false
+	$boss_bgm_player.playing = false
