@@ -19,7 +19,7 @@ func on_peer_disconnected(id):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	server_peer = WebSocketMultiplayerPeer.new()
-	server_peer.create_server(Globals.MULTIPLAYER_PORT)
+	server_peer.create_server(Globals.MULTIPLAYER_PORT, '127.0.0.1')
 	multiplayer.multiplayer_peer = server_peer
 	multiplayer.peer_connected.connect(on_peer_connected)	
 	multiplayer.peer_disconnected.connect(on_peer_disconnected)
