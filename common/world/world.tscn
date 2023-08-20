@@ -52,6 +52,14 @@ texture = ExtResource("2_74pj7")
 layout_mode = 2
 texture = ExtResource("2_74pj7")
 
+[node name="room_id" type="RichTextLabel" parent="UI"]
+offset_left = 81.0
+offset_top = 975.0
+offset_right = 398.0
+offset_bottom = 994.0
+scale = Vector2(3, 3)
+text = "ROOM_ID"
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]

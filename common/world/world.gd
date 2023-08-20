@@ -62,6 +62,7 @@ func get_visible_bounds():
 	pass
 
 func _ready():
+	$UI/room_id.text = "Room ID: " + str(Globals.room_id)
 	Globals.player_dead.connect(queue_free)
 	# No need to play music on the server
 	if Globals.is_server():
