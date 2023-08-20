@@ -74,6 +74,7 @@ func on_spawn_timer_timeout():
 			enemy.is_boss = true
 			enemy.health *= 20
 			Globals.boss_spawned = true
+			return
 		call_deferred('add_child', enemy, true)
 
 
