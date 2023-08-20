@@ -6,18 +6,18 @@
   "power": "HIGH",
   "speed": "LOW",
   "projectile_attack": {
-    "attack_power": "NORMAL",
-    "attack_range": "HIGH",
-    "attack_speed": "HIGH",
-    "projectile_size": "LOW",
-    "projectile_speed": "HIGH"
+	"attack_power": "NORMAL",
+	"attack_range": "HIGH",
+	"attack_speed": "HIGH",
+	"projectile_size": "LOW",
+	"projectile_speed": "HIGH"
   },
   "area_attack": {
-    "area_size": "HIGH",
-    "attack_delay": "HIGH",
-    "attack_power": "HIGH",
-    "attack_range": "HIGH",
-    "attack_speed": "LOW"
+	"area_size": "HIGH",
+	"attack_delay": "HIGH",
+	"attack_power": "HIGH",
+	"attack_range": "HIGH",
+	"attack_speed": "LOW"
   },
   "charge_attack": null,
   "hazard": null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bafrsrnmg6j3m"]
+[gd_scene load_steps=16 format=3 uid="uid://bafrsrnmg6j3m"]
 
 [ext_resource type="Script" path="res://client/lobby_root.gd" id="1_7jjli"]
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
@@ -34,6 +34,11 @@ gravity = Vector3(0, 10, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_wl26l"]
+font_size = 128
+outline_size = 16
+outline_color = Color(0.34902, 0.627451, 0.388235, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_0e44l"]
 font = ExtResource("3_r8kd2")
 font_size = 60
@@ -50,6 +55,7 @@ z_index = 1000
 script = ExtResource("1_7jjli")
 
 [node name="lobby_bg" type="Control" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -77,6 +83,21 @@ process_material = SubResource("ParticleProcessMaterial_kir6c")
 texture = ExtResource("3_ebdrt")
 lifetime = 10.0
 preprocess = 10.0
+
+[node name="Label" type="Label" parent="lobby_bg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -862.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = 338.0
+grow_horizontal = 0
+text = "Everything
+Survivors"
+label_settings = SubResource("LabelSettings_wl26l")
+horizontal_alignment = 2
 
 [node name="lobby_ui" type="Control" parent="."]
 layout_mode = 3
