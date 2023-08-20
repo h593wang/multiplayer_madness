@@ -1,3 +1,4 @@
 dataclasses-json==0.5.14
+Pillow==10.0.0
 requests==2.31.0
 Wikidata==0.7.0

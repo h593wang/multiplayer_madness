@@ -1,7 +1,9 @@
 {
   "name": "Universe",
-  "image_path": "Hubble_ultra_deep_field.jpg",
   "entity_id": "Q1",
+  "image_path": "Observable_universe_logarithmic_illustration_with_legends.png",
+  "image_width": 240,
+  "image_height": 240,
   "health": "HIGH",
   "power": "HIGH",
   "speed": "LOW",
