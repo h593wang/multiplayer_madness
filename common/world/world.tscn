@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3rb1a8xn2ipy"]
+[gd_scene load_steps=9 format=3 uid="uid://c3rb1a8xn2ipy"]
 
 [ext_resource type="Script" path="res://common/world/world.gd" id="1_3lxwi"]
 [ext_resource type="Texture2D" uid="uid://dyekrh8e00f57" path="res://resources/health1.png" id="2_74pj7"]
@@ -10,6 +10,9 @@
 font_size = 40
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tcqt"]
+font_size = 20
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1h00a"]
 properties/0/path = NodePath("../..:enemies_killed")
@@ -52,13 +55,13 @@ texture = ExtResource("2_74pj7")
 layout_mode = 2
 texture = ExtResource("2_74pj7")
 
-[node name="room_id" type="RichTextLabel" parent="UI"]
+[node name="room_id" type="Label" parent="UI"]
 offset_left = 81.0
 offset_top = 975.0
 offset_right = 398.0
 offset_bottom = 994.0
-scale = Vector2(3, 3)
 text = "ROOM_ID"
+label_settings = SubResource("LabelSettings_6tcqt")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
