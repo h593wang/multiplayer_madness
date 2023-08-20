@@ -1,7 +1,5 @@
 extends Sprite2D
 
-var url
-
 var sprite2d
 
 func _ready():
@@ -9,7 +7,7 @@ func _ready():
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_http_request_completed)
-
+	var url = get_parent().image_url
 	if url == null:
 		return
 
@@ -20,7 +18,6 @@ func _ready():
 	)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
-
 
 	# Called when the HTTP request is completed.
 func _http_request_completed(_result, _response_code, _headers, body):
