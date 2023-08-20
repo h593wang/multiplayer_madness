@@ -106,15 +106,16 @@ horizontal_alignment = 2
 [node name="lobby_ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 956.0
-offset_bottom = 525.0
+offset_right = 963.0
+offset_bottom = 542.0
+scale = Vector2(2, 2)
 script = ExtResource("1_g56nr")
 
 [node name="room_list" type="ItemList" parent="lobby_ui"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 67.0
-offset_right = 625.0
+offset_right = 501.0
 offset_bottom = 363.0
 max_text_lines = 5
 
@@ -128,38 +129,38 @@ text = "Refresh"
 
 [node name="host_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 647.0
-offset_top = 130.0
-offset_right = 875.0
-offset_bottom = 167.0
+offset_left = 528.0
+offset_top = 296.0
+offset_right = 912.0
+offset_bottom = 363.0
 disabled = true
 text = "Host
 "
 
 [node name="join_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 648.0
-offset_top = 69.0
-offset_right = 876.0
-offset_bottom = 106.0
+offset_left = 528.0
+offset_top = 206.0
+offset_right = 912.0
+offset_bottom = 273.0
 disabled = true
 text = "Join"
 
 [node name="host_local_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 648.0
-offset_top = 263.0
-offset_right = 876.0
-offset_bottom = 300.0
+offset_left = 585.5
+offset_top = 406.5
+offset_right = 813.5
+offset_bottom = 443.5
 text = "Host Local
 "
 
 [node name="join_local_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 648.0
-offset_top = 321.0
-offset_right = 876.0
-offset_bottom = 358.0
+offset_left = 588.5
+offset_top = 458.5
+offset_right = 816.5
+offset_bottom = 495.5
 text = "Join Local"
 
 [node name="room_list_request" type="HTTPRequest" parent="lobby_ui"]
@@ -171,6 +172,7 @@ text = "Join Local"
 [node name="room_poll_request" type="HTTPRequest" parent="lobby_ui"]
 
 [node name="entry_ui" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
