@@ -43,6 +43,7 @@ func add_player(peer_id):
 	var p = Player.instantiate() as Player
 	p.global_position = Vector2(randi() % 500, randi() % 500)
 	p.name = str(peer_id)
+	p.player_number = str(len(players) % 4)
 	p.health = 3
 	p.dead = false
 	p.is_invincible = false
