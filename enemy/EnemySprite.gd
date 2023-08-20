@@ -23,10 +23,19 @@ func _ready():
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
-	# Called when the HTTP request is completed.
+# Called when the HTTP request is completed.
 func _http_request_completed(_result, _response_code, _headers, body):
 	response = body
-	
+
+func crop_to_centre_square(image):
+	var cropped = Image.new()
+	var w = image.get_width()
+	var h = image.get_height()
+	var s = min(w, h)
+	cropped.create(s, s, false, image.get_format())
+	cropped.blit_rect(image, Rect2((w-s)/2, (h-s)/2, (w+s)/2, (h+s)/2), Vector2(0, 0))
+	return cropped
+
 func _process(delta):
 	image_format = get_parent().image_format
 	if (image_format == 'jpg' or image_format == 'png') and response != null and !image_processed:
@@ -34,16 +43,14 @@ func _process(delta):
 		var image_format = get_parent().image_format
 		var image = Image.new()
 		var image_error
-		if image_format == 'jpg': 
+		if image_format == 'jpg':
 			image_error = image.load_jpg_from_buffer(response)
 		elif image_format == 'png':
 			image_error = image.load_png_from_buffer(response)
-			
-		var image_scale = min(120.0 / image.get_height(), 120.0/image.get_width())
 		if image_error != OK:
 			push_error("An error occurred in image loading.")
 
+		image = crop_to_centre_square(image)
 		texture = ImageTexture.create_from_image(image)
-		scale = Vector2(image_scale, image_scale)
+		scale = Vector2(120.0 / image.get_width(), 120.0 / image.get_height())
 		get_parent().get_node("Label").queue_free()
-	
