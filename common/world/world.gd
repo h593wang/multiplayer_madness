@@ -6,6 +6,7 @@ const Player = preload("res://player/player.tscn")
 @onready var heart_empty = preload("res://resources/health2.png")
 
 @export var enemies_killed: int
+@export var boss_spawned: bool
 var players = {}
 @onready var bgm_player = $bgm_player
 
@@ -14,9 +15,10 @@ var rng = RandomNumberGenerator.new()
 func _process(_delta):
 	if Globals.is_server():
 		enemies_killed = Globals.enemies_killed
+		boss_spawned = Globals.boss_spawned
 	else:
 		Globals.enemies_killed = enemies_killed	
-		if Globals.boss_spawned:
+		if boss_spawned:
 			play_boss_music()
 	
 	if Globals.current_player_health > 0:
