@@ -11,5 +11,6 @@ func _on_button_pressed():
 	if is_win:
 		Globals.game_win.emit()
 	Globals.player_dead.emit()
+	multiplayer.multiplayer_peer.close()
 	get_parent().queue_free()
 	
