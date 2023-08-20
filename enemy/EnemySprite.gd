@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const test_url = "https://crossorigin.me/https://commons.wikimedia.org/w/thumb.php?width=240&f=Hubble_ultra_deep_field.jpg"
+const test_url = "https://commons.wikimedia.org/w/thumb.php?origin=*&width=240&f=Hubble_ultra_deep_field.jpg"
 var sprite2d
 
 func _ready():
@@ -11,7 +11,7 @@ func _ready():
 
 	# Perform a GET request. The URL below returns JSON as of writing.
 	var error = http_request.request(
-		test_url, 
+		test_url,
 		['User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36']
 	)
 	if error != OK:
@@ -25,6 +25,6 @@ func _http_request_completed(_result, _response_code, _headers, body):
 	var image_scale = min(120.0 / image.get_height(), 120.0/image.get_width())
 	if image_error != OK:
 		push_error("An error occurred in image loading.")
-		
+
 	texture = ImageTexture.create_from_image(image)
 	scale = Vector2(image_scale, image_scale)
