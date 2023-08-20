@@ -15,6 +15,7 @@ var death_scene = preload("res://enemy/EnemyDeath.tscn")
 var target_player: Node2D = null
 
 @export var image_url: String
+@export var image_format: String
 @export var enemy_name: String
 
 @export var is_boss = false
@@ -42,7 +43,6 @@ func retarget():
 	target_player = get_closest_player()
 
 func _ready():
-	print(image_url)
 	if is_boss:
 		$Node/BossChargeTimer.start()
 	$EnemyName.text = enemy_name

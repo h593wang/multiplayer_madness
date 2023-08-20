@@ -60,7 +60,12 @@ func on_spawn_timer_timeout():
 	elif enemy_type["speed"] == "HIGH":
 		enemy.move_speed = 300
 
-	enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + enemy_type["image_path"]
+	var image_path = enemy_type["image_path"]
+	enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + image_path
+	if image_path.ends_with("jpg") or image_path.ends_with("jpeg"):
+		enemy.image_format = 'jpg'
+	else:
+		enemy.image_format = 'png'
 	enemy.enemy_name = enemy_type["name"]
 	if Globals.enemies_killed >= 100 && !Globals.boss_spawned:
 		enemy.is_boss = true

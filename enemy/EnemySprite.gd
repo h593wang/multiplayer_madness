@@ -2,12 +2,15 @@ extends Sprite2D
 
 var sprite2d
 
+var image_format
+
 func _ready():
 	# Create an HTTP request node and connect its completion signal.
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_http_request_completed)
 	var url = get_parent().image_url
+	var image_format = get_parent().image_format
 	if url == null:
 		return
 
@@ -22,7 +25,12 @@ func _ready():
 	# Called when the HTTP request is completed.
 func _http_request_completed(_result, _response_code, _headers, body):
 	var image = Image.new()
-	var image_error = image.load_jpg_from_buffer(body)
+	var image_error
+	if image_format == 'jpg': 
+		image_error = image.load_jpg_from_buffer(body)
+	elif image_format == 'png':
+		image_error = image.load_png_from_buffer(body)
+		
 	var image_scale = min(120.0 / image.get_height(), 120.0/image.get_width())
 	if image_error != OK:
 		push_error("An error occurred in image loading.")
