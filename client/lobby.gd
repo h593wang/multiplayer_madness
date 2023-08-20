@@ -21,6 +21,8 @@ var connect_room_id = null
 var login_token = null
 var room_poll_active = false
 
+var server_joined = false
+
 const server_scene = preload('res://server/server.tscn')
 const client_scene = preload('res://client/client.tscn')
 	
@@ -36,6 +38,7 @@ func connect_to_server(conn_details):
 	game_instance.name = "GameInstance"
 	get_tree().root.call_deferred("add_child", game_instance)
 	get_parent().set_show_lobby(false)
+	server_joined = true
 	
 func reload_rooms():
 	room_list.clear()
@@ -134,7 +137,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	# Continuously poll the hosted room, if we have one
-	if connect_room_id != null and not room_poll_active:
+	if connect_room_id != null and not room_poll_active and not server_joined:
 		room_poll_active = true
 		var url = room_poll_url.format({ 'roomId': connect_room_id })
 		room_poll_request.request(url)
