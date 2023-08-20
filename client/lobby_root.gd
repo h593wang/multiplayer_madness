@@ -11,6 +11,8 @@ func set_show_lobby(should_show: bool = true):
 		$preloadshaders/Enemy.queue_free()
 	visible = should_show
 	if (should_show):
+		$lobby_ui.server_joined = false
+		$lobby_ui.connect_room_id = null
 		$lobby_ui/join_button.disabled = false
 		$lobby_ui/join_button.text = "Join"
 		$lobby_ui/host_button.disabled = false
