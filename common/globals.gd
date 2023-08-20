@@ -19,7 +19,7 @@ var is_local_server = false
 
 var was_started_as_server = '--server' in OS.get_cmdline_user_args()
 
-var enemies_killed = 99
+var enemies_killed = 0
 var boss_spawned = false
 signal boss_killed
 signal game_win
