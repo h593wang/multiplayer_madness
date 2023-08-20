@@ -25,7 +25,4 @@ func on_walk_end():
 func _ready():
 	timer.wait_time = WALK_TIMER_INTERVAL_S
 	timer.timeout.connect(on_walk_timer_timeout)
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+

@@ -51,7 +51,7 @@ func _ready():
 		retarget()
 	processed_health = health
 		
-func _process(delta):
+func _process(_delta):
 	if is_boss:
 		scale = Vector2(2.0, 2.0)
 	if !Globals.is_server():

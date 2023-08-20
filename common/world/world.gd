@@ -11,7 +11,7 @@ var players = {}
 
 var rng = RandomNumberGenerator.new()
 
-func _process(delta):
+func _process(_delta):
 	if Globals.is_server():
 		enemies_killed = Globals.enemies_killed
 	else:

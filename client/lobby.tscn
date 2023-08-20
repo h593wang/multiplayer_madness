@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bafrsrnmg6j3m"]
+[gd_scene load_steps=15 format=3 uid="uid://bafrsrnmg6j3m"]
 
 [ext_resource type="Script" path="res://client/lobby_root.gd" id="1_7jjli"]
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ddf6m4gcllee4" path="res://common/click_to_advance1.png" id="4_ww5w2"]
 [ext_resource type="Texture2D" uid="uid://b3upocmiylw73" path="res://common/click_to_advance2.png" id="5_qiqyj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6175"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58u7j"]
 shader = ExtResource("2_k0oqo")
 shader_parameter/angle = 0.0
 shader_parameter/position = 0.0
@@ -23,7 +23,7 @@ shader_parameter/speed = 2.0
 shader_parameter/ray1_density = 8.0
 shader_parameter/ray2_density = 30.0
 shader_parameter/ray2_intensity = 0.3
-shader_parameter/color = Color(1, 0.13, 0.88, 0.1)
+shader_parameter/color = Color(1, 0.137255, 0.886275, 0.137255)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
@@ -33,11 +33,6 @@ spread = 0.0
 gravity = Vector3(0, 10, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_wl26l"]
-font_size = 128
-outline_size = 16
-outline_color = Color(0.34902, 0.627451, 0.388235, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0e44l"]
 font = ExtResource("3_r8kd2")
@@ -55,7 +50,6 @@ z_index = 1000
 script = ExtResource("1_7jjli")
 
 [node name="lobby_bg" type="Control" parent="."]
-custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -70,7 +64,7 @@ texture = ExtResource("2_ey5c4")
 
 [node name="lightrays" type="TextureRect" parent="lobby_bg"]
 z_index = -100
-material = SubResource("ShaderMaterial_u6175")
+material = SubResource("ShaderMaterial_58u7j")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -83,21 +77,6 @@ process_material = SubResource("ParticleProcessMaterial_kir6c")
 texture = ExtResource("3_ebdrt")
 lifetime = 10.0
 preprocess = 10.0
-
-[node name="Label" type="Label" parent="lobby_bg"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -862.0
-offset_top = 100.0
-offset_right = -100.0
-offset_bottom = 338.0
-grow_horizontal = 0
-text = "Everything
-Survivors"
-label_settings = SubResource("LabelSettings_wl26l")
-horizontal_alignment = 2
 
 [node name="lobby_ui" type="Control" parent="."]
 layout_mode = 3
@@ -167,7 +146,6 @@ text = "Join Local"
 [node name="room_poll_request" type="HTTPRequest" parent="lobby_ui"]
 
 [node name="entry_ui" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
