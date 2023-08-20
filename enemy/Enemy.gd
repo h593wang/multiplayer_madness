@@ -45,7 +45,6 @@ func _ready():
 	print(image_url)
 	if is_boss:
 		$Node/BossChargeTimer.start()
-	$EnemySprite.url = image_url
 	$EnemyName.text = enemy_name
 	if Globals.is_server():
 		target_timer.wait_time = retarget_time_secs
