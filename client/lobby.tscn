@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bafrsrnmg6j3m"]
+[gd_scene load_steps=22 format=3 uid="uid://bafrsrnmg6j3m"]
 
 [ext_resource type="Script" path="res://client/lobby_root.gd" id="1_7jjli"]
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
@@ -263,6 +263,26 @@ shader_parameter/lifetime_randomness = 0.0
 shader_parameter/color_value = Color(1, 1, 1, 1)
 shader_parameter/gravity = Vector3(0, 10, 0)
 
+[sub_resource type="Animation" id="Animation_j71hl"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxpw0"]
+_data = {
+"default": SubResource("Animation_j71hl")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_wl26l"]
 font_size = 128
 outline_size = 16
@@ -312,6 +332,11 @@ process_material = SubResource("ShaderMaterial_xgk42")
 texture = ExtResource("3_ebdrt")
 lifetime = 10.0
 preprocess = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lobby_bg/gridspawner"]
+libraries = {
+"": SubResource("AnimationLibrary_gxpw0")
+}
 
 [node name="Label" type="Label" parent="lobby_bg"]
 layout_mode = 1
