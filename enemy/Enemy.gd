@@ -41,6 +41,7 @@ func retarget():
 	target_player = get_closest_player()
 
 func _ready():
+	print(image_url)
 	if is_boss:
 		$Node/BossChargeTimer.start()
 	$EnemySprite.url = image_url

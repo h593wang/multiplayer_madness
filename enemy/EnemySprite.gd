@@ -10,6 +10,9 @@ func _ready():
 	add_child(http_request)
 	http_request.request_completed.connect(_http_request_completed)
 
+	if url == null:
+		return
+
 	# Perform a GET request. The URL below returns JSON as of writing.
 	var error = http_request.request(
 		url,

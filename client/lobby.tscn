@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://lhyet1gmxgiy" path="res://common/upheavtt.ttf" id="3_r8kd2"]
 [ext_resource type="Texture2D" uid="uid://ddf6m4gcllee4" path="res://common/click_to_advance1.png" id="4_ww5w2"]
 [ext_resource type="Texture2D" uid="uid://b3upocmiylw73" path="res://common/click_to_advance2.png" id="5_qiqyj"]
-[ext_resource type="PackedScene" uid="uid://m5pdltrc0eh8" path="res://enemy/EnemyDeath.tscn" id="12_btbwk"]
+[ext_resource type="PackedScene" path="res://enemy/EnemyDeath.tscn" id="12_btbwk"]
 [ext_resource type="PackedScene" uid="uid://hhul6qb8nhsk" path="res://enemy/Enemy.tscn" id="13_y0cue"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u6175"]

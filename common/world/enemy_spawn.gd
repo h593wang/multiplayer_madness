@@ -16,11 +16,10 @@ const ENEMY_SPAWN_DIST_MAX = 1000
 func load_enemy_type(json_file_path):
 	var file = FileAccess.open(json_file_path, FileAccess.READ)
 	var content = file.get_as_text()
-	var json = JSON.new()
-	var finish = json.parse_string(content)
+	var finish = JSON.parse_string(content)
 	return finish
 
-var enemies = load_enemies("common/world/enemies_no_special_compressed.json")
+var enemies = load_enemy_type("common/world/enemies_no_special_compressed.json")
 
 func get_random_player_position():
 	var n = len(world.players.values())
@@ -53,12 +52,12 @@ func on_spawn_timer_timeout():
 
 	if enemy_type["health"] == "LOW":
 		enemy.health = 1
-	else if enemy_type["health"] == "HIGH":
+	elif enemy_type["health"] == "HIGH":
 		enemy.health = 4
 
 	if enemy_type["speed"] == "LOW":
 		enemy.move_speed = 100
-	else if enemy_type["speed"] == "HIGH":
+	elif enemy_type["speed"] == "HIGH":
 		enemy.move_speed = 300
 
 	enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + enemy_type["image_path"]
