@@ -8,6 +8,7 @@ func set_show_lobby(should_show: bool = true):
 	visible = should_show
 	if (should_show):
 		$lobby_ui/join_button.disabled = false
+		$lobby_ui/text.text = "Join"
 		$lobby_ui/host_button.disabled = false
 		$Camera2D.make_current()
 		var game_instance = get_tree().root.get_node("GameInstance")
