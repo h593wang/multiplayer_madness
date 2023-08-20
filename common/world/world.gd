@@ -41,7 +41,7 @@ func _process(_delta):
 			$UI/HealthRow/Heart1.texture = heart_empty
 			$UI/HealthRow/Heart2.texture = heart_empty
 			$UI/HealthRow/Heart3.texture = heart_empty
-		$UI/Enemies_killed.text = "Enemies Killed: " + str(Globals.enemies_killed)
+		$UI/Enemies_killed.text = "Enemies Killed: " + str(Globals.enemies_killed) + "/50"
 	else:
 		$UI.visible = false
 
