@@ -14,7 +14,7 @@ var death_scene = preload("res://enemy/EnemyDeath.tscn")
 
 var target_player: Node2D = null
 
-var image_url
+@export var image_url: String
 
 @export var is_boss = false
 var can_charge = false
