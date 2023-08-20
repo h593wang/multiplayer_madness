@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://enemy/Enemy.gd" id="1_y1c4d"]
 [ext_resource type="Shader" path="res://enemy/Enemy.gdshader" id="2_b3p62"]
-[ext_resource type="Texture2D" uid="uid://c7o1712nqpj8p" path="res://resources/circle.png" id="3_pskvs"]
+[ext_resource type="Texture2D" uid="uid://cgluc7wqjptja" path="res://icon.svg" id="3_8sxf1"]
 [ext_resource type="Script" path="res://enemy/EnemySprite.gd" id="3_q1pl3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_usn28"]
@@ -12,7 +12,9 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r532o"]
 shader = ExtResource("2_b3p62")
-shader_parameter/circle = ExtResource("3_pskvs")
+shader_parameter/circle_size = 0.5
+shader_parameter/ratio_width = 1.0
+shader_parameter/ratio_height = 1.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qs261"]
 properties/0/path = NodePath(".:position")
@@ -63,6 +65,7 @@ label_settings = SubResource("LabelSettings_usn28")
 [node name="EnemySprite" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_r532o")
+texture = ExtResource("3_8sxf1")
 region_rect = Rect2(36, 27.5, 50, 74)
 script = ExtResource("3_q1pl3")
 
