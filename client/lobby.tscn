@@ -28,6 +28,7 @@ shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kir6c"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 spread = 0.0
 gravity = Vector3(0, 10, 0)
