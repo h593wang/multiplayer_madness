@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bafrsrnmg6j3m"]
+[gd_scene load_steps=19 format=3 uid="uid://bafrsrnmg6j3m"]
 
 [ext_resource type="Script" path="res://client/lobby_root.gd" id="1_7jjli"]
 [ext_resource type="Script" path="res://client/lobby.gd" id="1_g56nr"]
@@ -10,6 +10,9 @@
 [ext_resource type="FontFile" uid="uid://lhyet1gmxgiy" path="res://common/upheavtt.ttf" id="3_r8kd2"]
 [ext_resource type="Texture2D" uid="uid://ddf6m4gcllee4" path="res://common/click_to_advance1.png" id="4_ww5w2"]
 [ext_resource type="Texture2D" uid="uid://b3upocmiylw73" path="res://common/click_to_advance2.png" id="5_qiqyj"]
+[ext_resource type="PackedScene" uid="uid://c3qbv2i4yfwjr" path="res://weapons/effects/GunFire.tscn" id="11_nu48x"]
+[ext_resource type="PackedScene" uid="uid://m5pdltrc0eh8" path="res://enemy/EnemyDeath.tscn" id="12_btbwk"]
+[ext_resource type="PackedScene" uid="uid://hhul6qb8nhsk" path="res://enemy/Enemy.tscn" id="13_y0cue"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u6175"]
 shader = ExtResource("2_k0oqo")
@@ -28,6 +31,7 @@ shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kir6c"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 spread = 0.0
 gravity = Vector3(0, 10, 0)
@@ -226,3 +230,11 @@ expand_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="preloadshaders" type="Node" parent="."]
+
+[node name="Node2D" parent="preloadshaders" instance=ExtResource("11_nu48x")]
+
+[node name="EnemyDeath" parent="preloadshaders" instance=ExtResource("12_btbwk")]
+
+[node name="Enemy" parent="preloadshaders" instance=ExtResource("13_y0cue")]
