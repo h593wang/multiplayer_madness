@@ -13,6 +13,7 @@ var game_end = preload("res://player/GameEnd.tscn")
 var death_processed = false
 
 @export var player_animation: String
+var player_number: String
 
 @onready var walk_sounds = $player_walk_sounds
 
@@ -32,11 +33,12 @@ func _enter_tree():
 func _ready():
 	is_controlled = Globals.is_client_controlled(str(name).to_int())
 	Globals.boss_killed.connect(process_boss_killed)
+	print(player_number)
 	
 	if is_controlled:
 		$Camera2D.make_current()
 	motion_mode = MOTION_MODE_FLOATING
-	$AnimatedSprite2D.play("idle_down")
+	$AnimatedSprite2D.play(str(player_number) + "_idle_down")
 	$AnimatedSprite2D.z_index = z_index
 	gun = gun_scene.instantiate() as Node2D
 	gun_position = $AnimatedSprite2D/RightHand.position
@@ -118,25 +120,25 @@ func _process(_delta):
 	# Setting moving animation
 	if direction > PI/4 and direction <= 3 * PI/4:
 		if moving:
-			player_animation = "walk_down"
+			player_animation = str(player_number) + "_walk_down"
 		else:
-			player_animation = "idle_down"
+			player_animation = str(player_number) + "_idle_down"
 	elif direction > -PI/4 and direction <= PI/4:
 		if moving:
-			player_animation = "walk_right"
+			player_animation = str(player_number) + "_walk_right"
 		else:
-			player_animation = "idle_right"
+			player_animation = str(player_number) + "_idle_right"
 	elif direction > -3 * PI/4 and direction <= -PI/4:
 		gun_zindex = z_index-1
 		if moving:
-			player_animation = "walk_up"
+			player_animation = str(player_number) + "_walk_up"
 		else:
-			player_animation = "idle_up"
+			player_animation = str(player_number) + "_idle_up"
 	else:
 		if moving:
-			player_animation = "walk_left"
+			player_animation = str(player_number) + "_walk_left"
 		else:
-			player_animation = "idle_left"
+			player_animation = str(player_number) + "_idle_left"
 			
 	if was_moving and not moving:
 		walk_sounds.on_walk_end()
