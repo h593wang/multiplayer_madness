@@ -28,6 +28,7 @@ const client_scene = preload('res://client/client.tscn')
 	
 func select_room(room_id):
 	connect_room_id = room_id
+	room_poll_active = false
 		
 func connect_to_server(conn_details):
 	Globals.server_host = conn_details['host']
