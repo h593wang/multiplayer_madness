@@ -114,7 +114,6 @@ _data = {
 [node name="GunFire" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_v7422")
 position = Vector2(17, 0)
-emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_onpbu")
 texture = ExtResource("1_h7yob")
