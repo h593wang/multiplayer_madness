@@ -13,7 +13,7 @@ var game_end = preload("res://player/GameEnd.tscn")
 var death_processed = false
 
 @export var player_animation: String
-var player_number: String
+var player_number: int
 
 @onready var walk_sounds = $player_walk_sounds
 
@@ -33,7 +33,8 @@ func _enter_tree():
 func _ready():
 	is_controlled = Globals.is_client_controlled(str(name).to_int())
 	Globals.boss_killed.connect(process_boss_killed)
-	print(player_number)
+	player_number = Globals.player_number
+	Globals.player_number += 1
 	
 	if is_controlled:
 		$Camera2D.make_current()
