@@ -2,7 +2,6 @@ extends Node2D
 
 func _ready():
 	Globals.player_dead.connect(set_show_lobby)
-	$preloadshaders.queue_free()
 
 func set_show_lobby(should_show: bool = true):
 	visible = should_show
