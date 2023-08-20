@@ -175,8 +175,10 @@ func hit():
 	if $HitTimer.is_stopped():
 		$HitTimer.start()
 	health = health - 1
+	$hit_player.play_hit(health)
 	if health <= 0:
 		dead = true
+	
 
 func _on_hit_timer_timeout():
 	is_invincible = false
