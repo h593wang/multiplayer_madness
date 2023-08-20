@@ -1,9 +1,14 @@
 extends Node2D
 
+var enemy_freed = false
+
 func _ready():
 	Globals.player_dead.connect(set_show_lobby)
 
 func set_show_lobby(should_show: bool = true):
+	if !enemy_freed:
+		enemy_freed = true
+		$preloadshaders/Enemy.queue_free()
 	visible = should_show
 	if (should_show):
 		$lobby_ui/join_button.disabled = false

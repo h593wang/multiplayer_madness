@@ -50,6 +50,8 @@ func _ready():
 
 
 func process_boss_killed():
+	if Globals.is_server():
+		get_tree().call_group("enemies", "queue_free")
 	if is_controlled:
 		var ge = game_end.instantiate() as GameEnd
 		ge.is_win = true
