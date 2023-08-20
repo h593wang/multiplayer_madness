@@ -10,8 +10,8 @@ var rng = RandomNumberGenerator.new()
 
 const ENEMY_SPAWN_INTERVAL_S = 5
 
-const ENEMY_SPAWN_DIST_MIN = 500
-const ENEMY_SPAWN_DIST_MAX = 1000
+const ENEMY_SPAWN_DIST_MIN = 1000
+const ENEMY_SPAWN_DIST_MAX = 1500
 
 func load_enemy_type(json_file_path):
 	var file = FileAccess.open(json_file_path, FileAccess.READ)
