@@ -7,6 +7,7 @@ const Player = preload("res://player/player.tscn")
 
 @export var enemies_killed: int
 @export var boss_spawned: bool
+var boss_spawn_processed = false
 var players = {}
 @onready var bgm_player = $bgm_player
 
@@ -18,7 +19,8 @@ func _process(_delta):
 		boss_spawned = Globals.boss_spawned
 	else:
 		Globals.enemies_killed = enemies_killed	
-		if boss_spawned:
+		if boss_spawned and !boss_spawn_processed:
+			boss_spawn_processed = true
 			play_boss_music()
 	
 	if Globals.current_player_health > 0:
@@ -75,7 +77,7 @@ func _ready():
 
 func play_boss_music():
 	bgm_player.playing = false
-	$boss_bgm_player.play()
+	$boss_bgm_player.playing = true
 	
 func stop_boss_music():
 	bgm_player.playing = false
