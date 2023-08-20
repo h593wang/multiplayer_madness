@@ -9,7 +9,7 @@ class_name Player extends CharacterBody2D
 @export var health: int
 @export var dead: bool
 @export var is_invincible: bool
-var death_scene = preload("res://player/player_death.tscn")
+var game_end = preload("res://player/GameEnd.tscn")
 var death_processed = false
 
 @export var player_animation: String
@@ -31,6 +31,7 @@ func _enter_tree():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_controlled = Globals.is_client_controlled(str(name).to_int())
+	Globals.boss_killed.connect(process_boss_killed)
 	
 	if is_controlled:
 		$Camera2D.make_current()
@@ -45,8 +46,14 @@ func _ready():
 	add_child(gun)
 
 
+func process_boss_killed():
+	if is_controlled:
+		var ge = game_end.instantiate() as GameEnd
+		ge.is_win = true
+		add_child(ge)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
 	if is_invincible:
 		$AnimatedSprite2D.material.set_shader_parameter("invincible", true)
 	else:
@@ -58,7 +65,7 @@ func _process(_delta):
 		
 		$AnimatedSprite2D.global_rotation = PI/2
 		if is_controlled:
-			var ds = death_scene.instantiate() as PlayerDeath
+			var ds = game_end.instantiate() as GameEnd
 			add_child(ds)
 		gun.queue_free()
 		return

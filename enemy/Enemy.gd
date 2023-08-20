@@ -1,19 +1,23 @@
 class_name Enemy extends CharacterBody2D
 
 @export var world: MMWorld
-@export var hurt: String
-@export var previous: String
 
 @onready var target_timer = $target_timer
 
 @export var retarget_time_secs = 2
 @export var move_speed = 200
 @export var health = 2
+var processed_health = 2
 
 @export var death_rotation: float
 var death_scene = preload("res://enemy/EnemyDeath.tscn")
 
 var target_player: Node2D = null
+
+@export var is_boss = false
+var can_charge = false
+var charge_angle = null
+var charge_speed = 800
 
 func get_closest_player():
 	var players = world.players.values()
@@ -35,6 +39,9 @@ func retarget():
 	target_player = get_closest_player()
 
 func _ready():
+	if is_boss:
+		health = 1 * Globals.player_count
+		$Node/BossChargeTimer.start()
 	if Globals.is_server():
 		target_timer.wait_time = retarget_time_secs
 		target_timer.timeout.connect(retarget)
@@ -42,13 +49,26 @@ func _ready():
 		
 		# Do an initial retarget so we have one set from the beginning
 		retarget()
+	processed_health = health
 		
 func _process(delta):
+	if is_boss:
+		scale = Vector2(2.0, 2.0)
 	if !Globals.is_server():
-		if hurt != null and hurt != previous:
-			previous = hurt
+		if health != processed_health:
+			processed_health = health
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("hurt")
 		return
+	
+	if is_boss and can_charge and target_player != null:
+		can_charge = false
+		$Node/BossChargeTimer2.start()
+		charge_angle = (target_player.global_position - global_position).normalized()
+	
+	if charge_angle != null:
+		set_velocity(charge_angle * charge_speed)
+		move_and_slide()
 	
 	if target_player != null:
 		var angle = (target_player.global_position - global_position).normalized()
@@ -57,7 +77,6 @@ func _process(delta):
 		
 	for body in $Area2D.get_overlapping_bodies():
 		if body is Bullet:
-			hurt = OS.get_unique_id()
 			body.queue_free()
 			health -= 1
 			death_rotation = body.global_rotation
@@ -65,10 +84,18 @@ func _process(delta):
 				Globals.enemies_killed += 1
 				queue_free()
 
-
-
 func _exit_tree():
+	if is_boss:
+		Globals.boss_killed.emit()
 	var death_particle = death_scene.instantiate()
 	death_particle.global_rotation = death_rotation
 	death_particle.global_position = global_position
 	get_tree().root.add_child(death_particle)
+
+
+func _on_boss_charge_timer_timeout():
+	can_charge = true
+
+
+func _on_boss_charge_timer_2_timeout():
+	charge_angle = null

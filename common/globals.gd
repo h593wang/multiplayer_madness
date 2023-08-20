@@ -1,6 +1,7 @@
 extends Node
 
 signal player_dead
+var player_count = 1
 
 const MULTIPLAYER_PORT = 22222
 const APP_ID = 'app-2fbbeb0b-0e85-4ee3-ad3e-9320f0980d1b'
@@ -17,7 +18,10 @@ var is_local_server = false
 
 var was_started_as_server = '--server' in OS.get_cmdline_user_args()
 
-var enemies_killed = 0
+var enemies_killed = 99
+var boss_spawned = false
+signal boss_killed
+signal game_win
 var current_player_health = 3
 
 func get_startup_mode():

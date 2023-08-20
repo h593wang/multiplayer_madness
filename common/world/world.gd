@@ -49,6 +49,7 @@ func add_player(peer_id):
 	player_node.add_child(p, true)
 	
 	players[peer_id] = p
+	Globals.player_count = len(players)
 
 	return p
 
@@ -64,3 +65,4 @@ func _ready():
 	# No need to play music on the server
 	if Globals.is_server():
 		bgm_player.playing = false
+

@@ -21,14 +21,18 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
-properties/1/path = NodePath(".:hurt")
+properties/1/path = NodePath(".:death_rotation")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
-properties/2/path = NodePath(".:death_rotation")
+properties/2/path = NodePath(".:health")
 properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
+properties/3/path = NodePath(".:is_boss")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usyhe"]
 radius = 60.0
@@ -111,3 +115,15 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0)
 shape = SubResource("CircleShape2D_1dq3k")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="BossChargeTimer" type="Timer" parent="Node"]
+wait_time = 10.0
+
+[node name="BossChargeTimer2" type="Timer" parent="Node"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Node/BossChargeTimer" to="." method="_on_boss_charge_timer_timeout"]
+[connection signal="timeout" from="Node/BossChargeTimer2" to="." method="_on_boss_charge_timer_2_timeout"]

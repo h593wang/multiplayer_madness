@@ -31,6 +31,16 @@ func get_spawn_position():
 func on_spawn_timer_timeout():
 	if !Globals.is_server() or world.players.is_empty():
 		return
+	if Globals.enemies_killed >= 100 && !Globals.boss_spawned:
+		var boss = enemy_scene.instantiate()
+		boss.position = get_spawn_position()
+		boss.is_boss = true
+		boss.world = world
+		call_deferred('add_child', boss, true)
+		Globals.boss_spawned = true
+		return
+	if Globals.boss_spawned:
+		return
 	# Do fancy spawn tables or whatever later.
 	var enemy = enemy_scene.instantiate()
 	enemy.position = get_spawn_position()
@@ -40,6 +50,6 @@ func on_spawn_timer_timeout():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawn_timer.wait_time = ENEMY_SPAWN_INTERVAL_S
+	spawn_timer.wait_time = ENEMY_SPAWN_INTERVAL_S / max(1, len(world.players.values()))
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	spawn_timer.start()
