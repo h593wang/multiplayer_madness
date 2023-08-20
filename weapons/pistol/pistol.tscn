@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgm0rtxp764ux"]
+[gd_scene load_steps=12 format=3 uid="uid://cgm0rtxp764ux"]
 
 [ext_resource type="Script" path="res://weapons/pistol/pistol.gd" id="1_4cu8x"]
 [ext_resource type="PackedScene" uid="uid://b5py88y4mvx8x" path="res://weapons/bullets/basicbullet/bullet.tscn" id="2_8bc7t"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c3qbv2i4yfwjr" path="res://weapons/effects/GunFire.tscn" id="8_ikphd"]
 [ext_resource type="Script" path="res://weapons/BasicShootable.gd" id="8_k46dr"]
 [ext_resource type="AudioStream" uid="uid://t2nyc3a70s2y" path="res://weapons/pistol/1911-reload-6248.mp3" id="9_b4wjn"]
-[ext_resource type="PackedScene" uid="uid://cq0og86h1ruwr" path="res://weapons/effects/shell.tscn" id="9_x7848"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yet06"]
 animations = [{
@@ -63,7 +62,7 @@ chamber_point = NodePath("../ChamberPoint")
 on_shoot_sfx = ExtResource("7_4bmlr")
 on_reload_sfx = ExtResource("9_b4wjn")
 fire_effect = ExtResource("8_ikphd")
-shell_scene = ExtResource("9_x7848")
+is_controlled = true
 
 [node name="FirePoint" type="CollisionShape2D" parent="BasicShootable"]
 position = Vector2(26, -10)

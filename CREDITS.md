@@ -10,3 +10,9 @@ https://freesound.org/people/andersmmg/sounds/523422/
 
 ## Hit sounds
 Jerma985's AA EE OO. (twitch.tv/jerma985)
+
+## Sprites
+LimeZu's modern interior, exterior, UI packs
+
+## Boss music
+https://pixabay.com/music/main-title-fight-142564/

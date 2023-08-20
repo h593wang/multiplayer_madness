@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://negnbqdjwjn6"]
+[gd_scene load_steps=13 format=3 uid="uid://drkcwwafv35fv"]
 
 [ext_resource type="Texture2D" uid="uid://brpljonl3fggo" path="res://weapons/effects/basicshoteffect.png" id="1_1nk8l"]
-[ext_resource type="Script" path="res://weapons/effects/GunFireHeavy.gd" id="2_2afa1"]
 [ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="3_5ch5i"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v7422"]
@@ -41,6 +40,16 @@ scale_curve = SubResource("CurveTexture_2nk0f")
 color = Color(1, 0.819608, 0.329412, 1)
 color_ramp = SubResource("GradientTexture1D_3twcq")
 anim_offset_max = 1.0
+
+[sub_resource type="GDScript" id="GDScript_77u67"]
+script/source = "extends GPUParticles2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$PointLight2D1.global_position = $PointLight2D1.global_position + Vector2(randf_range(-5,5), randf_range(-5,5))
+	$PointLight2D2.global_position = $PointLight2D1.global_position +  Vector2(randf_range(-5,5), randf_range(-5,5))
+	$PointLight2D3.global_position = $PointLight2D1.global_position +  Vector2(randf_range(-5,5), randf_range(-5,5))
+"
 
 [sub_resource type="Animation" id="Animation_e8y48"]
 length = 0.001
@@ -187,7 +196,7 @@ lifetime = 0.2
 one_shot = true
 explosiveness = 0.9
 local_coords = true
-script = ExtResource("2_2afa1")
+script = SubResource("GDScript_77u67")
 
 [node name="PointLight2D1" type="PointLight2D" parent="GunFire"]
 color = Color(1, 0.847059, 0.431373, 1)
