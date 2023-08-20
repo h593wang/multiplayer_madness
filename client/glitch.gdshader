@@ -9,19 +9,19 @@ and consider sharing the modified result on godotshaders.com.
 
 shader_type canvas_item;
 
-uniform float angle = -0.3;
-uniform float position = -0.2;
-uniform float spread : hint_range(0.0, 1.0) = 0.5;
-uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
-uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float angle = 0;
+uniform float position = 0;
+uniform float spread : hint_range(0.0, 1.0) = 1;
+uniform float cutoff : hint_range(-1.0, 1.0) = -1;
+uniform float falloff : hint_range(0.0, 1.0) = 1;
 uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
 
-uniform float speed = 1.0;
+uniform float speed = 2.0;
 uniform float ray1_density = 8.0;
 uniform float ray2_density = 30.0;
 uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
 
-uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+uniform vec4 color : source_color = vec4(1.0, 0.13, 0.88, 0.1);
 
 uniform bool hdr = false;
 uniform float seed = 5.0;
