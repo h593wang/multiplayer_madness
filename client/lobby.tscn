@@ -167,7 +167,6 @@ text = "Join Local"
 [node name="room_poll_request" type="HTTPRequest" parent="lobby_ui"]
 
 [node name="entry_ui" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
