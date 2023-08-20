@@ -28,6 +28,7 @@ func _http_request_completed(_result, _response_code, _headers, body):
 	response = body
 	
 func _process(delta):
+	image_format = get_parent().image_format
 	if (image_format == 'jpg' or image_format == 'png') and response != null and !image_processed:
 		image_processed = true
 		var image_format = get_parent().image_format
