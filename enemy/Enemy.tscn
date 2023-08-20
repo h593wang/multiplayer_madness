@@ -84,7 +84,7 @@ material = SubResource("ShaderMaterial_r532o")
 region_rect = Rect2(36, 27.5, 50, 74)
 script = ExtResource("3_q1pl3")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." groups=["enemies"]]
 replication_config = SubResource("SceneReplicationConfig_qs261")
 
 [node name="target_timer" type="Timer" parent="."]
