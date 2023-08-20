@@ -10,7 +10,10 @@ func _ready():
 	http_request.request_completed.connect(_http_request_completed)
 
 	# Perform a GET request. The URL below returns JSON as of writing.
-	var error = http_request.request(test_url)
+	var error = http_request.request(
+		test_url, 
+		['User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36']
+	)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
