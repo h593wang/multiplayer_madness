@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bmin3vx0wddm" path="res://resources/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_03.png" id="6_cn47q"]
 [ext_resource type="Texture2D" uid="uid://bskvh3xu8so1k" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="7_fryos"]
 [ext_resource type="Texture2D" uid="uid://i12g5fyfm715" path="res://resources/2_Characters/Character_Generator/0_Premade_Characters/32x32/Premade_Character_32x32_11.png" id="7_oaahj"]
-[ext_resource type="Script" path="res://player/hit_player.gd" id="11_cuffe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aoxc"]
 resource_local_to_scene = true
@@ -1584,6 +1583,9 @@ stream_0/weight = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idh80"]
 size = Vector2(20, 33)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8wdgd"]
+font_size = 20
+
 [node name="Player" type="CharacterBody2D"]
 process_priority = -10
 collision_mask = 0
@@ -1618,12 +1620,6 @@ shape = SubResource("RectangleShape2D_dkms4")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4kcoc")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -20.0
-offset_top = -61.0
-offset_right = 20.0
-offset_bottom = -21.0
-
 [node name="player_walk_sounds" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource("5_51sfr")
 
@@ -1652,7 +1648,15 @@ range_layer_max = -10
 texture = ExtResource("7_fryos")
 texture_scale = 4.0
 
-[node name="hit_player" type="AudioStreamPlayer2D" parent="."]
-script = ExtResource("11_cuffe")
+[node name="ammo" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -25.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_8wdgd")
 
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

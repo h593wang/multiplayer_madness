@@ -75,7 +75,6 @@ func _process(_delta):
 	if dead:
 		return
 		
-	$RichTextLabel.text = str(position)
 	gun.rotation = gun_rotation
 	gun.scale = gun_scale
 	gun.position = gun_position
@@ -86,7 +85,7 @@ func _process(_delta):
 	
 	if !is_controlled:
 		return
-		
+	$ammo.text = str(gun.get_node("BasicShootable").current_clip_ammo) + "/6"
 	var direction = get_mouse_position_rotation()
 	
 	if not is_left_hand and (direction > 2 * PI/3 or direction < -2 * PI/3):
