@@ -1,6 +1,7 @@
 extends Sprite2D
 
-const test_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=240&f=Hubble_ultra_deep_field.jpg"
+var url
+
 var sprite2d
 
 func _ready():
@@ -11,7 +12,7 @@ func _ready():
 
 	# Perform a GET request. The URL below returns JSON as of writing.
 	var error = http_request.request(
-		test_url,
+		url,
 		['User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36']
 	)
 	if error != OK:

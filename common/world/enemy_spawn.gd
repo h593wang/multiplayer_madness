@@ -13,40 +13,63 @@ const ENEMY_SPAWN_INTERVAL_S = 5
 const ENEMY_SPAWN_DIST_MIN = 500
 const ENEMY_SPAWN_DIST_MAX = 1000
 
+func load_enemy_type(json_file_path):
+	var file = FileAccess.open(json_file_path, FileAccess.READ)
+	var content = file.get_as_text()
+	var json = JSON.new()
+	var finish = json.parse_string(content)
+	return finish
+
+var enemies = load_enemies("common/world/enemies_no_special_compressed.json")
+
 func get_random_player_position():
 	var n = len(world.players.values())
 	var i = rng.randi_range(0, n - 1)
-	
+
 	return world.players.values()[i].global_position
+
+func get_random_enemy_type():
+	var i = rng.randi_range(0, len(enemies))
+	return enemies[i]
 
 func get_spawn_position():
 	var target_position = get_random_player_position()
 	var dist = rng.randi_range(ENEMY_SPAWN_DIST_MIN, ENEMY_SPAWN_DIST_MAX)
 	var angle = deg_to_rad(rng.randi_range(0, 360))
-	
+
 	var offset = Vector2(cos(angle), sin(angle)) * dist
-	
+
 	return target_position + offset
 
 func on_spawn_timer_timeout():
 	if !Globals.is_server() or world.players.is_empty():
 		return
-	if Globals.enemies_killed >= 100 && !Globals.boss_spawned:
-		var boss = enemy_scene.instantiate()
-		boss.position = get_spawn_position()
-		boss.is_boss = true
-		boss.world = world
-		call_deferred('add_child', boss, true)
-		Globals.boss_spawned = true
-		return
 	if Globals.boss_spawned:
 		return
-	# Do fancy spawn tables or whatever later.
 	var enemy = enemy_scene.instantiate()
+	var enemy_type = get_random_enemy_type()
 	enemy.position = get_spawn_position()
 	enemy.world = world
+
+	if enemy_type["health"] == "LOW":
+		enemy.health = 1
+	else if enemy_type["health"] == "HIGH":
+		enemy.health = 4
+
+	if enemy_type["speed"] == "LOW":
+		enemy.move_speed = 100
+	else if enemy_type["speed"] == "HIGH":
+		enemy.move_speed = 300
+
+	enemy.image_url = "https://proxy.ugo-ii.com/https://commons.wikimedia.org/w/thumb.php?width=120&f=" + enemy_type["image_path"]
+
+	if Globals.enemies_killed >= 100 && !Globals.boss_spawned:
+		enemy.is_boss = true
+		enemy.health *= 20
+		Globals.boss_spawned = true
 	call_deferred('add_child', enemy, true)
-	
+	return
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
