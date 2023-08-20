@@ -57,8 +57,6 @@ func _process(_delta):
 	if !Globals.is_server():
 		if health != processed_health:
 			processed_health = health
-			$AnimationPlayer.stop()
-			$AnimationPlayer.play("hurt")
 		return
 	
 	if is_boss and can_charge and target_player != null:
