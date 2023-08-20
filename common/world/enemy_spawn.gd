@@ -19,7 +19,7 @@ func load_enemy_type(json_file_path):
 	var finish = JSON.parse_string(content)
 	return finish
 
-var enemies = load_enemy_type("common/world/enemies_no_special_compressed.json")
+var enemies = load_enemy_type("res://common/world/enemies_no_special_compressed.json")
 
 func get_random_player_position():
 	var n = len(world.players.values())
