@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const test_url = "https://static.wikia.nocookie.net/the-amazing-waluigi/images/5/50/Waluigi.jpg/revision/latest?cb=20160914054728"
+const test_url = "https://commons.wikimedia.org/w/thumb.php?width=240&f=Hubble_ultra_deep_field.jpg"
 var sprite2d
 
 func _ready():
