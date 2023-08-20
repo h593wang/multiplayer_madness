@@ -128,23 +128,6 @@ offset_bottom = 266.0
 disabled = true
 text = "Join"
 
-[node name="host_local_button" type="Button" parent="lobby_ui"]
-layout_mode = 0
-offset_left = 479.0
-offset_top = 425.5
-offset_right = 707.0
-offset_bottom = 462.5
-text = "Host Local
-"
-
-[node name="join_local_button" type="Button" parent="lobby_ui"]
-layout_mode = 0
-offset_left = 589.0
-offset_top = 490.0
-offset_right = 817.0
-offset_bottom = 527.0
-text = "Join Local"
-
 [node name="room_list_request" type="HTTPRequest" parent="lobby_ui"]
 
 [node name="host_request" type="HTTPRequest" parent="lobby_ui"]

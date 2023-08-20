@@ -4,8 +4,8 @@ extends Control
 @onready var host_button = $host_button
 @onready var join_button = $join_button
 @onready var refresh_button = $refresh_button
-@onready var host_local_button = $host_local_button
-@onready var join_local_button = $join_local_button
+#@onready var host_local_button = $host_local_button
+#@onready var join_local_button = $join_local_button
 
 @onready var room_list_request = $room_list_request
 @onready var room_poll_request = $room_poll_request
@@ -129,8 +129,8 @@ func _ready():
 	host_button.pressed.connect(on_host_click)
 	join_button.pressed.connect(on_join_click)
 	refresh_button.pressed.connect(on_refresh_click)
-	host_local_button.pressed.connect(on_host_local_click)
-	join_local_button.pressed.connect(on_join_local_click)
+#	host_local_button.pressed.connect(on_host_local_click)
+#	join_local_button.pressed.connect(on_join_local_click)
 	
 	login_request.request(login_url, [], HTTPClient.METHOD_POST)
 	reload_rooms()
