@@ -16,6 +16,8 @@ func _process(_delta):
 		enemies_killed = Globals.enemies_killed
 	else:
 		Globals.enemies_killed = enemies_killed	
+		if Globals.boss_spawned:
+			play_boss_music()
 	
 	if Globals.current_player_health > 0:
 		$UI.visible = true
@@ -67,7 +69,6 @@ func _ready():
 	# No need to play music on the server
 	if Globals.is_server():
 		bgm_player.playing = false
-	Globals.boss_spawned.connect(play_boss_music)
 	Globals.boss_killed.connect(stop_boss_music)
 
 func play_boss_music():

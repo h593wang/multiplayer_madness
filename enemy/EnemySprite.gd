@@ -45,4 +45,5 @@ func _process(delta):
 
 		texture = ImageTexture.create_from_image(image)
 		scale = Vector2(image_scale, image_scale)
+		get_parent().get_node("Label").queue_free()
 	
