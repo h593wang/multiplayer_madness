@@ -5,6 +5,8 @@ var world = null
 
 var players = {}
 
+var players_joined = false
+
 var server_peer: WebSocketMultiplayerPeer = null
 
 func on_peer_connected(id):
@@ -12,9 +14,16 @@ func on_peer_connected(id):
 	var player = world.add_player(id)
 	players[id] = player
 	
+	players_joined = true
+	
 func on_peer_disconnected(id):
 	print("Peer %d disconnected!\n" % id)
 	world.destroy_player(id)
+
+	players.erase(id)
+	
+	if players.size() == 0 and players_joined:
+		server_peer.close()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
