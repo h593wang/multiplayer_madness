@@ -1,6 +1,7 @@
 /.godot/
 /*.tar
 /*.tgz
+*.tmp
 
 # Server export
 server.pck
