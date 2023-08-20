@@ -75,7 +75,7 @@ func _ready():
 
 func play_boss_music():
 	bgm_player.playing = false
-	$boss_bgm_player.playing = true
+	$boss_bgm_player.play()
 	
 func stop_boss_music():
 	bgm_player.playing = false
