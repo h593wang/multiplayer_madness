@@ -79,5 +79,6 @@ func show_ending():
 	render()
 
 func _ready():
+	visible = true
 	Globals.game_win.connect(show_ending)
 
