@@ -70,7 +70,7 @@ func _process(_delta):
 func try_shoot():
 	if can_shoot && current_clip_ammo > 0 && not in_wall:
 			if fire_effect != null:
-				var fire = fire_effect.instantiate() as Node2D
+				var fire = fire_effect.instantiate() as GPUParticles2D
 				fire_point.add_child(fire)
 				
 			can_shoot = false

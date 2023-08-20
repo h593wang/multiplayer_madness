@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ddf6m4gcllee4" path="res://common/click_to_advance1.png" id="4_ww5w2"]
 [ext_resource type="Texture2D" uid="uid://b3upocmiylw73" path="res://common/click_to_advance2.png" id="5_qiqyj"]
 [ext_resource type="PackedScene" uid="uid://c3qbv2i4yfwjr" path="res://weapons/effects/GunFire.tscn" id="11_nu48x"]
-[ext_resource type="PackedScene" path="res://enemy/EnemyDeath.tscn" id="12_btbwk"]
+[ext_resource type="PackedScene" uid="uid://m5pdltrc0eh8" path="res://enemy/EnemyDeath.tscn" id="12_btbwk"]
 [ext_resource type="PackedScene" uid="uid://hhul6qb8nhsk" path="res://enemy/Enemy.tscn" id="13_y0cue"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u6175"]
@@ -358,14 +358,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 956.0
 offset_bottom = 525.0
-scale = Vector2(2, 2)
 script = ExtResource("1_g56nr")
 
 [node name="room_list" type="ItemList" parent="lobby_ui"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 67.0
-offset_right = 499.0
+offset_right = 625.0
 offset_bottom = 363.0
 max_text_lines = 5
 
@@ -379,38 +378,38 @@ text = "Refresh"
 
 [node name="host_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 526.0
-offset_top = 204.0
-offset_right = 913.0
-offset_bottom = 275.0
+offset_left = 647.0
+offset_top = 130.0
+offset_right = 875.0
+offset_bottom = 167.0
 disabled = true
 text = "Host
 "
 
 [node name="join_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 526.0
-offset_top = 293.0
-offset_right = 913.0
-offset_bottom = 364.0
+offset_left = 648.0
+offset_top = 69.0
+offset_right = 876.0
+offset_bottom = 106.0
 disabled = true
 text = "Join"
 
 [node name="host_local_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 499.0
-offset_top = 439.0
-offset_right = 727.0
-offset_bottom = 476.0
+offset_left = 648.0
+offset_top = 263.0
+offset_right = 876.0
+offset_bottom = 300.0
 text = "Host Local
 "
 
 [node name="join_local_button" type="Button" parent="lobby_ui"]
 layout_mode = 0
-offset_left = 612.0
-offset_top = 491.5
-offset_right = 840.0
-offset_bottom = 528.5
+offset_left = 648.0
+offset_top = 321.0
+offset_right = 876.0
+offset_bottom = 358.0
 text = "Join Local"
 
 [node name="room_list_request" type="HTTPRequest" parent="lobby_ui"]
@@ -422,7 +421,6 @@ text = "Join Local"
 [node name="room_poll_request" type="HTTPRequest" parent="lobby_ui"]
 
 [node name="entry_ui" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
